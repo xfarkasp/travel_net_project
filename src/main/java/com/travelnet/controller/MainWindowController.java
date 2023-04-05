@@ -67,7 +67,6 @@ public class MainWindowController implements Initializable {
         return travelContainer;
     }
 
-
     /**
      * Update.
      * This method is called by the PostObserver class to add new post to all main window instances
@@ -80,7 +79,7 @@ public class MainWindowController implements Initializable {
 
             TravelPostController travelPostController = fxmlLoader.getController();
             travelPostController.addNew(tc.travelList().get(tc.travelList().size() - 1), this);
-
+            //adds a new TravelPost VBox widget to travel container
             travelContainer.getChildren().add(0, root);
             if(leftVbox.getChildren().size() > 0)
                 leftVbox.getChildren().remove(0);
@@ -135,6 +134,7 @@ public class MainWindowController implements Initializable {
 
     /**
      * Initialize window
+     * Add instance of this controller to observer subs
      *
      * @param url
      * @param resourceBundle

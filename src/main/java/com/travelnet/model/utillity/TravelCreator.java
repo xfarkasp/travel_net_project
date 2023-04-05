@@ -17,8 +17,13 @@ import java.util.ArrayList;
  * Singleton based database for travels
  */
 public class TravelCreator {
-
+    /**
+     *Singleton instance
+     */
     private static final TravelCreator instance = new TravelCreator();
+    /**
+     *Travel database
+     */
     private ArrayList<Travel>travelDataBase;
     private String test = "funguje";
 

@@ -48,13 +48,15 @@ public class TravelCreatorController implements Initializable {
 
     @FXML
     private TextArea aboutTravel;
-
+    /**
+     * Controller of instance of MainWindowController
+     */
     private MainWindowController mainWindowController;
 
 
     /**
      * Initializes the window
-     *
+     * sets up widget values
      * @param url
      * @param resourceBundle
      */
@@ -114,9 +116,6 @@ public class TravelCreatorController implements Initializable {
             else if(e.getMessage().equals("Vehicle field is empty!"))
                 vehicleDropdown.setValue("You must select a Vehicle!");
         }
-
-
-
     }
 
     /**

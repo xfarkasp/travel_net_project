@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 
 /**
  * The interface Visitor.
+ * Visitor patern
  */
 public interface Visitor {
     /**

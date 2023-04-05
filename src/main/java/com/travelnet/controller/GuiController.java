@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
  * Controls the login window
  */
 public class GuiController implements Initializable {
-    private UserHandler userHandler = new UserHandler();
+
     @FXML
     private Label welcomeText;
     @FXML
@@ -45,7 +45,9 @@ public class GuiController implements Initializable {
 
     @FXML
     private Label exceptionMessage;
-
+    /**
+     * Reference to UserHandler user database
+     */
     private UserHandler uh;
 
     /**
@@ -103,6 +105,7 @@ public class GuiController implements Initializable {
     }
 
     /**
+     * Initializes controller
      * Deserilizes the user databased, if deserialization fails, creates new user database(Singleton)
      * Initializes window
      *

@@ -70,8 +70,8 @@
             </HBox>
             <HBox prefHeight="24.0" prefWidth="565.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="81.0" text="Companions: " />
-                  <Label fx:id="companionsText" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="436.0" text="COMPANIONS" />
+                  <Label prefHeight="29.0" prefWidth="391.0" text="Click on add button before plane button!" />
+                  <Label fx:id="companionsText" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="436.0" text="COMPANIONS" visible="false" />
                </children>
                <padding>
                   <Insets left="25.0" right="25.0" />
@@ -113,11 +113,6 @@
             <ImageView fx:id="joinTravel" fitHeight="96.0" fitWidth="96.0" onMouseClicked="#onJoinButton" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/icons/icons8-join-96.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="leaveTravel" fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/icons/icons8-exit-sign-64.png" />
                </image>
             </ImageView>
          </children>

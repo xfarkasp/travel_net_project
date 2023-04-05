@@ -36,7 +36,9 @@ public class Car implements Vehicle {
     protected int kmCounter;
 
     private int timeLeft;
-
+    /**
+     * returns icon path
+     */
     private final String icon = "images/icons/skyline.png";
 
     /**
@@ -56,18 +58,25 @@ public class Car implements Vehicle {
         System.out.println("this user can not repair a car");
 
     }
-
-
-
+    /**
+     * Gets car condition
+     *
+     * @return  condition
+     */
     @Override
     public int getCondition() {return condition;}
 
-
+    /**
+     * Sets car condition
+     *
+     * @param  condition
+     */
     @Override
     public void setCondition(int condition) {this.condition = condition;}
 
     /**
-     * @return
+     * Return car icon
+     * @return icon
      */
     @Override
     public String getIcon() {
@@ -75,7 +84,7 @@ public class Car implements Vehicle {
     }
 
     /**
-     * @return
+     * @return failfactor of vehicle
      */
     @Override
     public int getFail() {
@@ -83,58 +92,12 @@ public class Car implements Vehicle {
     }
 
     /**
-     * @return
+     * Gets maxCondition of vehicle
+     *
+     * @return maxCondition of vehicle
      */
     @Override
     public int getMaxCondition() {
         return maxCondition;
-    }
-
-    /**
-     * Starts the delay counter to delay the time of arrival on another thread
-     */
-
-
-    private void delayCounter(){
-        timeLeft = speedFactor;
-        while (timeLeft != 0) {
-            timeLeft--;
-            try {
-                System.out.println(timeLeft);
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-
-            }
-        }
-    }
-
-    /**
-     * The type Thread service.
-     */
-    public class threadService extends Service<String> {
-        private threadService(String timeLeft){
-            setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                @Override
-                public void handle(WorkerStateEvent workerStateEvent) {
-
-                }
-            });
-        }
-
-
-        /**
-         * @return
-         */
-        @Override
-        protected Task<String> createTask() {
-            return new Task<String>() {
-                @Override
-                protected String call() throws Exception {
-                    Car.this.delayCounter();
-                    return "ok";
-                }
-            };
-        }
     }
 }

@@ -19,11 +19,17 @@ public class Pilot extends DefaultUser{
         hunger = 50;
         stamina = 50;
     }
-
+    /**
+     * Pilot skill, if vehicle condition grater than zero
+     * pilot can pilot it
+     * decreases Pilot stats
+     *
+     * @param vehicle   vehicle object
+     */
     @Override
     public boolean skill(Vehicle vehicle) {
         if(vehicle.getCondition() > 0){
-            if(this.hunger >= 10 && this.stamina >= 10){
+            if(this.hunger > 10 && this.stamina > 10){
                 this.hunger -= 10;
                 this.stamina -= 10;
                 return true;

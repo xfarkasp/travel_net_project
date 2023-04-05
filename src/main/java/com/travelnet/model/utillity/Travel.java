@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 /**
  * The type Travel.
+ * This object is responsable for handling travels
  */
 public class Travel {
     private User owner;

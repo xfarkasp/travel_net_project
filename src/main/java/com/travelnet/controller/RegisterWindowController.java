@@ -33,7 +33,9 @@ public class RegisterWindowController implements Initializable {
 
     @FXML
     private ChoiceBox<String> userTypeDropdown;
-
+    /**
+     * UserHandler database reference
+     */
     private UserHandler uh;
 
     /**

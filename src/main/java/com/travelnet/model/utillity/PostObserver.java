@@ -7,10 +7,18 @@ import java.util.ArrayList;
 
 /**
  * The type Post observer.
+ * Observer patern
+ * updates every MainWindowController instance when new post was added
  */
 public class PostObserver {
+    /**
+     * Singleton instance
+     */
     private static final PostObserver instance = new PostObserver();
     private PostObserver(){tnInstances = new ArrayList<>();};
+    /**
+     * Subs of observer
+     */
     private ArrayList<MainWindowController> tnInstances;
 
     /**
@@ -42,6 +50,7 @@ public class PostObserver {
 
     /**
      * Notify subjects.
+     * Adds post from every instance of MainWindowController
      */
     public void notifySubjects(){
         for(MainWindowController controller : tnInstances) {
@@ -52,7 +61,7 @@ public class PostObserver {
 
     /**
      * Notify deleter.
-     *
+     *Deletes post from every instance of MainWindowController
      * @param index the index
      */
     public void notifyDeleter(int index){

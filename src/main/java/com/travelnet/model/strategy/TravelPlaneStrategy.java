@@ -13,16 +13,37 @@ import javafx.event.EventHandler;
 import java.util.concurrent.TimeUnit;
 
 public class TravelPlaneStrategy implements TravelStrategy{
+    /**
+     * Travel gif source.
+     */
     private final String travelAnimation = "images/gif/travel-map-destinations-aqmubawbrhnfybku.gif";
+    /**
+     * Current travel.
+     */
     private Travel travel;
+    /**
+     * Time left to arrive to the selected city.
+     */
 
     private int timeLeft;
+    /**
+     * The Km counter.
+     */
     protected int kmCounter;
+    /**
+     * Instantiates a new Travel plane strategy.
+     *
+     * @param travel the travel
+     */
     public TravelPlaneStrategy(Travel travel){
         this.travel = travel;
     }
     /**
-     * @return
+     * Travel algorithm which is used to travel to a new destination
+     * vehicle condition is evaluated, then the method looks for an instance of Pilot in the travel
+     * if he finds a pilot, it uses its skill method then decrements the hunger and stamina for all the users
+     *
+     *  @return true if travel was successful, false if not
      */
     @Override
     public boolean travelTo() {
@@ -39,12 +60,12 @@ public class TravelPlaneStrategy implements TravelStrategy{
                     if (travel.getCompanions().get(i).skill(travel.getVehicle())) {
                         kmCounter += cityCurrent.getDistance();
                         for(User user : travel.getCompanions()){
-                            if(user.getHunger() > 10 && user.getStamina() > 10) {
-                            user.setHunger(user.getHunger() - 5);
-                            user.setStamina(user.getStamina() - 5);
-                            }else{return false;}
+                            if( !(user instanceof Pilot) && user.getHunger() >= 5 && user.getStamina() >= 5) {
+                                user.setHunger(user.getHunger() - 5);
+                                user.setStamina(user.getStamina() - 5);
+                            }
                         }
-
+                        //vehicle condition decremented
                         travel.getVehicle().setCondition(travel.getVehicle().getCondition() - travel.getVehicle().getFail());
 
                         new threadService("pain").start();
@@ -56,18 +77,30 @@ public class TravelPlaneStrategy implements TravelStrategy{
         return false;
     }
 
-
+    /**
+     * Returns time left from delayCounter
+     *
+     * @return timeLeft
+     */
     @Override
     public int getTimeLeft() {
         return timeLeft;
     }
 
-
+    /**
+     * Returns travelAnimation path
+     *
+     * @return travelAnimation
+     */
     @Override
     public String getTravelAnimation() {
         return travelAnimation;
     }
-
+    /**
+     * Counts down based on distance and vehicle speedfactor
+     * Runs on different thread until reaches 0
+     *
+     */
     private void delayCounter(){
         timeLeft = this.travel.getCurrentCity().getDistance()/10 + travel.getVehicle().getSpeed();
         while (timeLeft != 0) {
@@ -99,7 +132,7 @@ public class TravelPlaneStrategy implements TravelStrategy{
         /**
          * Starts the delay counter on another thread
          *
-         * @return "ok"
+         * @return "ok" when task finishes
          */
         @Override
         protected Task<String> createTask() {

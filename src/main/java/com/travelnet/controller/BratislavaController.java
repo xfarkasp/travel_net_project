@@ -40,9 +40,17 @@ public class BratislavaController implements MapController {
     @FXML
     private ImageView map;
 
-
+    /**
+     * Visibility flag for restaurant labels
+     */
     private boolean zazitokFlag = false;
+    /**
+     * Visibility flag for restaurant labels
+     */
     private boolean restauraciaFlag = false;
+    /**
+     * Visibility flag for hotel labels
+     */
     private boolean hotelFlag = false;
 
     /**
@@ -80,7 +88,6 @@ public class BratislavaController implements MapController {
             zazitokFlag = false;
         }
     }
-
     /**
      * On showRestaurants button clicked set restauraciaFlag
      * visibilities to true or false if clicked again

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 /**
  * The type City visitor.
+ * Visitor patern
  */
 public class CityVisitor implements Visitor{
     private CityWindowController cwc;

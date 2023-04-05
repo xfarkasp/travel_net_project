@@ -40,12 +40,19 @@ public class TravelCarStrategy implements TravelStrategy{
     public TravelCarStrategy(Travel travel){
         this.travel = travel;
     }
+    /**
+     * travelTo handles the travel process to a new city
+     * Decrements user values calculates the time out time
+     * starts new thrad for timeout counter
+     *
+     * @return true if travel was successful, false if not
+     */
     @Override
     public boolean travelTo() {
         City cityCurrent = travel.getCurrentCity();
         if(travel.getVehicle().getCondition() > 0){
                 for(User user : travel.getCompanions()){
-                    if(user.getHunger() > 0 && user.getStamina() > 0) {
+                    if(user.getHunger() >= 10 && user.getStamina() >= 10) {
                         user.setHunger(user.getHunger() - 10);
                         user.setStamina(user.getStamina() - 10);
                     }else{return false;}
@@ -60,7 +67,11 @@ public class TravelCarStrategy implements TravelStrategy{
         System.out.println("The car is in bad condition, call a mechanic");
         return false;
     }
-
+    /**
+     * Counts down based on distance and vehicle speedfactor
+     * Runs on different thread until reaches 0
+     *
+     */
     private void delayCounter(){
         timeLeft = this.travel.getCurrentCity().getDistance()/10 + travel.getVehicle().getSpeed();
         while (timeLeft != 0) {
@@ -74,12 +85,20 @@ public class TravelCarStrategy implements TravelStrategy{
             }
         }
     }
-
+    /**
+     * Returns time left from delayCounter
+     *
+     * @return timeLeft
+     */
     @Override
     public int getTimeLeft() {
         return timeLeft;
     }
-
+    /**
+     * Returns travelAnimation path
+     *
+     * @return travelAnimation
+     */
     @Override
     public String getTravelAnimation() {
         return travelAnimation;
@@ -87,6 +106,8 @@ public class TravelCarStrategy implements TravelStrategy{
 
     /**
      * The type Thread service.
+     * Creates a new thread for delay counter method.
+     *
      */
     public class threadService extends Service<String> {
         private threadService(String timeLeft){
@@ -97,7 +118,11 @@ public class TravelCarStrategy implements TravelStrategy{
                 }
             });
         }
-
+        /**
+         * Starts the delay counter on another thread
+         *
+         * @return "ok" when task finishes
+         */
         @Override
         protected Task<String> createTask() {
             return new Task<String>() {

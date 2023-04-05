@@ -89,16 +89,34 @@ public class CityWindowController implements Initializable {
     private ChoiceBox<String> vehicleDropDown;
     @FXML
     private Label notification;
-
+    /**
+     * Map pane Controller.
+     */
     private MapController map;
+    /**
+     * InterestFlag
+     */
     private boolean zazitokFlag = false;
+    /**
+     * RestaurantFlag
+     */
     private boolean restauraciaFlag = false;
+    /**
+     * Hotel flag
+     */
     private boolean hotelFlag = false;
+    /**
+     * Current travel
+     */
     private Travel currentTravel;
-
+    /**
+     * This travels car object
+     */
    private Vehicle car;
+    /**
+     * This travels plane object
+     */
    private Vehicle plane;
-
 
     /**
      * Sets up map pane controller.
@@ -175,6 +193,7 @@ public class CityWindowController implements Initializable {
         if(currentTravel.getCurrentCity() instanceof Bratislava){
             this.mapPane.getChildren().add(visitor.visit((Bratislava) currentTravel.getCurrentCity()));
         }
+        //rtti used to cast objects
         else if(currentTravel.getCurrentCity() instanceof Vienna)
             this.mapPane.getChildren().add(visitor.visit((Vienna) currentTravel.getCurrentCity()));
         else if(currentTravel.getCurrentCity() instanceof Paris)
@@ -324,7 +343,9 @@ public class CityWindowController implements Initializable {
             };
         }
     }
-
+    /**
+     * Initialization of Controller
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userContainer.getChildren();

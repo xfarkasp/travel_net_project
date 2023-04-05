@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 
 /**
  * The type User status controller.
+ * Shows and controls the users on the current travel
  */
 public class UserStatusController{
 
@@ -41,11 +42,15 @@ public class UserStatusController{
     private Button eat;
     @FXML
     private Button rest;
-
+    /**
+     * Current user
+     */
     private User userStatus;
-
+    /**
+     * Current vehicle
+     */
     private Vehicle vehicle;
-
+    @FXML
     private Label condition;
 
     /**
@@ -91,8 +96,10 @@ public class UserStatusController{
      */
     @FXML
     void eatButton(MouseEvent event) {
-        userStatus.setHunger(userStatus.getHunger() + 5);
-        hungerValue.setText(String.valueOf(userStatus.getHunger()));
+        if(userStatus.getHunger() < 50){
+            userStatus.setHunger(userStatus.getHunger() + 5);
+            hungerValue.setText(String.valueOf(userStatus.getHunger()));
+        }
     }
 
     /**
@@ -103,7 +110,9 @@ public class UserStatusController{
      */
     @FXML
     void restButton(MouseEvent event) {
-        userStatus.setStamina(userStatus.getStamina() + 5);
-        staminaValue.setText(String.valueOf(userStatus.getStamina()));
+        if(userStatus.getStamina() < 50){
+            userStatus.setStamina(userStatus.getStamina() + 5);
+            staminaValue.setText(String.valueOf(userStatus.getStamina()));
+        }
     }
 }

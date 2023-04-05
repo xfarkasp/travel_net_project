@@ -49,11 +49,22 @@ public class ViennaController implements MapController {
 
     @FXML
     private Label zazitok2111;
-
+    /**
+     * Visibility flag for restaurant labels
+     */
     private boolean zazitokFlag = false;
+    /**
+     * Visibility flag for restaurant labels
+     */
     private boolean restauraciaFlag = false;
+    /**
+     * Visibility flag for hotel labels
+     */
     private boolean hotelFlag = false;
-
+    /**
+     * On showHotels button clicked set hotelFlag
+     * visibilities to true or false if clicked again
+     */
     @FXML
     public void showHotelsClicked() {
         if(!hotelFlag){
@@ -68,7 +79,10 @@ public class ViennaController implements MapController {
             hotelFlag = false;
         }
     }
-
+    /**
+     * On showInterests button clicked set zazitokFlag
+     * visibilities to true or false if clicked again
+     */
     public void showInterestsClicked() {
         if(!zazitokFlag){
             this.zazitok211.setVisible(true);
@@ -84,8 +98,10 @@ public class ViennaController implements MapController {
             zazitokFlag = false;
         }
     }
-
-
+    /**
+     * On showRestaurants button clicked set restauraciaFlag
+     * visibilities to true or false if clicked again
+     */
     public void showRestaurantsClicked(){
         if(!restauraciaFlag){
             this.restauracia.setVisible(true);
@@ -101,7 +117,9 @@ public class ViennaController implements MapController {
         }
 
     }
-
+    /**
+     * Sets map image path
+     */
     @Override
     public void setImg(String imgPath) {
         this.map.setImage(new Image(imgPath));

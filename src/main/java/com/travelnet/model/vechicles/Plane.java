@@ -36,7 +36,7 @@ public class Plane implements Vehicle{
 
 
     /**
-     * @return
+     * @return speedFactor of Plane object
      */
     @Override
     public int getSpeed() {
@@ -85,7 +85,7 @@ public class Plane implements Vehicle{
     }
 
     /**
-     * @return
+     * @return fail factor of plane object
      */
     @Override
     public int getFail() {
@@ -93,7 +93,7 @@ public class Plane implements Vehicle{
     }
 
     /**
-     * @return
+     * @return fmax condition of plane object
      */
     @Override
     public int getMaxCondition() {
