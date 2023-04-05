@@ -1,5 +1,6 @@
 package com.travelnet;
 
+import com.travelnet.logic.UserHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GuiController {
+    private UserHandler userHandler = new UserHandler();
     @FXML
     private Label welcomeText;
     @FXML

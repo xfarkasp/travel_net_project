@@ -1,5 +1,7 @@
 package com.travelnet.users;
 
+import com.travelnet.utillity.Travel;
+
 import java.util.ArrayList;
 
 abstract class DefaultUser {
@@ -13,6 +15,60 @@ abstract class DefaultUser {
     protected ArrayList<String> hobbies;
     protected ArrayList<String> foods;
     protected ArrayList<String> languages;
+
+    protected int stamina;
+    protected int money;
+    protected int hunger;
+
+    protected ArrayList<Travel>ownedTravels;
+
+    public ArrayList<Travel> getOwnedTravels() {
+        return ownedTravels;
+    }
+
+    public void setOwnedTravels(ArrayList<Travel> ownedTravels) {
+        this.ownedTravels = ownedTravels;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getStamina() {
+        return stamina;
+    }
+
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public int getHunger() {
+        return hunger;
+    }
+
+    public void setHunger(int hunger) {
+        this.hunger = hunger;
+    }
 
     public DefaultUser(String firstName, String lastName, String email, String password, int age, ArrayList<String> hobbies, ArrayList<String> foods, ArrayList<String> languages, String originCountry) {
         this.firstName = firstName;
