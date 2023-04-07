@@ -66,7 +66,10 @@
       </ScrollPane>
    </center>
    <left>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="leftPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="leftVbox" layoutX="6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+         </children></Pane>
    </left>
    <right>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />

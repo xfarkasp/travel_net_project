@@ -38,6 +38,9 @@ public class MainWindowController implements Initializable {
     @FXML
     private VBox travelContainer;
 
+    @FXML
+    private VBox leftVbox;
+
     private ArrayList<Travel> travelList;
 
 
@@ -45,10 +48,10 @@ public class MainWindowController implements Initializable {
         System.out.println("input detected");
         travelList.add(new Travel(new Adult(), new ArrayList<User>(), new ArrayList<City>(), new Bratislava()));
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../travel-post.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../travel-creator.fxml"));
             VBox vBox = fxmlLoader.load();
             TravelPostController travelPostController = fxmlLoader.getController();
-            travelContainer.getChildren().add(0, vBox);
+            leftVbox.getChildren().add(0, vBox);
         }catch (IOException e) {
             throw new RuntimeException(e);
         }
