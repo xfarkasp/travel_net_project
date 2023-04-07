@@ -1,9 +1,11 @@
 package com.travelnet.logic;
 
+import com.travelnet.users.User;
+
 import java.util.ArrayList;
 
 public class UserHandler {
-    private ArrayList<Child> userList;
+    private ArrayList<User> userList;
 
     public UserHandler() {
         this.userList = new ArrayList<>();
@@ -17,11 +19,11 @@ public class UserHandler {
 
     }
 
-    public ArrayList<Child> getUserList() {
+    public ArrayList<User> getUserList() {
         return userList;
     }
 
-    public void setUserList(ArrayList<Child> userList) {
+    public void setUserList(ArrayList<User> userList) {
         this.userList = userList;
     }
 }

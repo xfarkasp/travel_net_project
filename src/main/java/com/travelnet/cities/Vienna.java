@@ -27,4 +27,13 @@ public class Vienna implements City {
     public String getName() {
         return null;
     }
+
+    /**
+     * @param city
+     * @return
+     */
+    @Override
+    public int getDistance(String city) {
+        return 0;
+    }
 }

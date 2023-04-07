@@ -7,6 +7,11 @@ public class Adult extends DefaultUser implements User{
         super(firstName, lastName, email, password, age, hobbies, foods, languages, originCountry);
     }
 
+    public Adult() {
+
+        super("Demo", "User", "Demo@demo.de", "demo", 69, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), "Demoland");
+    }
+
     @Override
     public void staminaUsage(User user) {
 
@@ -19,6 +24,14 @@ public class Adult extends DefaultUser implements User{
 
     @Override
     public void skill(User user) {
+
+    }
+
+    /**
+     * @param waitTime
+     */
+    @Override
+    public void waitTime(int waitTime) {
 
     }
 }

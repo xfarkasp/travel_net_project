@@ -1,5 +1,7 @@
 package com.travelnet;
 
+import com.travelnet.gui.MainWindow;
+import com.travelnet.gui.TravelWindow;
 import com.travelnet.logic.UserHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,22 +19,32 @@ public class GuiController {
     private Label welcomeText;
     @FXML
     private Button register;
+    @FXML
+    private Button demoButton;
 
     @FXML
     protected void onAdiosButtonClick() {
         welcomeText.setText("Adios!");
     }
 
-    public void onRegister(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("register-menu.fxml"));
-        Scene scene = null;
+    @FXML
+    void onDemoButton(ActionEvent event) {
         try {
             Stage stage = (Stage) register.getScene().getWindow();
-            scene = new Scene(fxmlLoader.load(), 600, 400);
-            stage.setTitle("Hello!");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.start(stage);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void onRegister(ActionEvent actionEvent) {
+        try {
+            Stage stage = (Stage) register.getScene().getWindow();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.start(stage);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
