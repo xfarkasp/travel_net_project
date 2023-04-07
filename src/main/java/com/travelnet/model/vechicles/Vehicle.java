@@ -1,8 +1,8 @@
-package com.travelnet.vechicles;
+package com.travelnet.model.vechicles;
 
-import com.travelnet.cities.City;
-import com.travelnet.users.User;
-import com.travelnet.utillity.Travel;
+import com.travelnet.model.cities.City;
+import com.travelnet.model.users.User;
+import com.travelnet.model.utillity.Travel;
 
 public interface Vehicle {
     default void defatult(){};

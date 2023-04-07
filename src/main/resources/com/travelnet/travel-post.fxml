@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="565.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.gui.TravelPostController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="565.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.controller.TravelPostController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="60.0">
          <children>
@@ -22,7 +22,7 @@
                <children>
                   <HBox>
                      <children>
-                        <Label prefHeight="30.0" prefWidth="427.0" text="USERNAME">
+                        <Label fx:id="userName" prefHeight="30.0" prefWidth="427.0" text="USERNAME">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -34,7 +34,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="TIME" />
+                        <Label fx:id="timeCreated" text="TIME" />
                      </children>
                   </HBox>
                </children>
@@ -52,7 +52,7 @@
             <Insets left="20.0" right="20.0" />
          </padding>
       </HBox>
-      <Label maxWidth="1.7976931348623157E308" text="Caption">
+      <Label fx:id="captionText" maxWidth="1.7976931348623157E308" text="Caption">
          <VBox.margin>
             <Insets left="25.0" right="25.0" />
          </VBox.margin>
@@ -62,7 +62,7 @@
             <HBox>
                <children>
                   <Label prefHeight="20.0" prefWidth="46.0" text="Origin:" />
-                  <Label maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="479.0" text="ORIGINCOUNTRY" />
+                  <Label fx:id="originCountry" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="479.0" text="ORIGINCOUNTRY" />
                </children>
                <padding>
                   <Insets left="25.0" right="25.0" />
@@ -71,7 +71,7 @@
             <HBox prefHeight="24.0" prefWidth="565.0">
                <children>
                   <Label prefHeight="20.0" prefWidth="81.0" text="Companions: " />
-                  <Label maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="436.0" text="COMPANIONS" />
+                  <Label fx:id="companionsText" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="436.0" text="COMPANIONS" />
                </children>
                <padding>
                   <Insets left="25.0" right="25.0" />
@@ -80,7 +80,7 @@
             <HBox prefHeight="21.0" prefWidth="540.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="83.0" text="Places to visit:" />
-                  <Label maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="439.0" text="ORIGINCOUNTRY" />
+                  <Label fx:id="countryList" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="439.0" text="ORIGINCOUNTRY" />
                </children>
                <padding>
                   <Insets left="25.0" right="25.0" />
@@ -88,24 +88,24 @@
             </HBox>
          </children>
       </VBox>
-      <ImageView fitHeight="535.0" fitWidth="535.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="travelImage" fitHeight="535.0" fitWidth="535.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/city_imgs/Bratislava-870x400.jpg" />
+            <Image url="@../../images/city_imgs/atlantis-1024x576.jpg-.jpg" />
          </image>
       </ImageView>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
          <children>
-            <ImageView fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="startTravel" fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/icons/icons8-airplane-take-off-96.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="joinTravel" fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/icons/icons8-join-96.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="leaveTravel" fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/icons/icons8-exit-sign-64.png" />
                </image>

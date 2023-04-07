@@ -1,4 +1,4 @@
-package com.travelnet.users;
+package com.travelnet.model.users;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,5 @@
-package com.travelnet.gui;
+package com.travelnet.view;
 
-import com.travelnet.Gui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,22 +7,22 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class TravelWindow extends Application {
-
-    /**
-     * @param stage
-     * @throws Exception
-     */
-    public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-window.fxml"));
+public class Gui extends Application {
+    @Override
+    public void start(Stage stage)  {
+        FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../hello-view.fxml"));
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 1000, 900);
+            scene = new Scene(fxmlLoader.load(), 320, 240);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 }

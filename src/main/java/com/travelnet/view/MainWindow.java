@@ -1,6 +1,5 @@
-package com.travelnet.gui;
+package com.travelnet.view;
 
-import com.travelnet.Gui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -17,7 +16,7 @@ public class MainWindow extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("main-window.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../main-window.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1000, 900);

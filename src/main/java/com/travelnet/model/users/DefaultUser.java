@@ -1,6 +1,6 @@
-package com.travelnet.users;
+package com.travelnet.model.users;
 
-import com.travelnet.utillity.Travel;
+import com.travelnet.model.utillity.Travel;
 
 import java.util.ArrayList;
 

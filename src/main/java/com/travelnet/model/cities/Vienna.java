@@ -1,8 +1,16 @@
-package com.travelnet.cities;
+package com.travelnet.model.cities;
 
-import com.travelnet.users.User;
+import com.travelnet.model.users.User;
 
 public class Vienna implements City {
+    /**
+     * @return
+     */
+    @Override
+    public String getImagePath() {
+        return null;
+    }
+
     @Override
     public boolean fetchFood(User user, int choice) {
         return false;

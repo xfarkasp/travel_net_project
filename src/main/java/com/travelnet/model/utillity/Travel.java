@@ -1,8 +1,8 @@
-package com.travelnet.utillity;
+package com.travelnet.model.utillity;
 
-import com.travelnet.cities.City;
-import com.travelnet.users.User;
-import com.travelnet.vechicles.Vehicle;
+import com.travelnet.model.cities.City;
+import com.travelnet.model.users.User;
+import com.travelnet.model.vechicles.Vehicle;
 
 import java.util.ArrayList;
 

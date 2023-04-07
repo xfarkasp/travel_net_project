@@ -1,4 +1,4 @@
-package com.travelnet.users;
+package com.travelnet.model.users;
 
 public interface User {
     void staminaUsage(User user);

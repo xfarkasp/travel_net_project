@@ -1,8 +1,9 @@
-package com.travelnet.cities;
+package com.travelnet.model.cities;
 
-import com.travelnet.users.User;
+import com.travelnet.model.users.User;
 
 public interface City {
+    String getImagePath();
     boolean fetchFood(User user, int choice);
     boolean entertainment(User user);
     boolean sleep(User user);

@@ -1,17 +1,12 @@
-package com.travelnet;
+package com.travelnet.controller;
 
-import com.travelnet.gui.MainWindow;
-import com.travelnet.gui.TravelWindow;
-import com.travelnet.logic.UserHandler;
+import com.travelnet.view.MainWindow;
+import com.travelnet.model.users.UserHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class GuiController {
     private UserHandler userHandler = new UserHandler();

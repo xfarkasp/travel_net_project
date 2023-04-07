@@ -1,6 +1,5 @@
-package com.travelnet.gui;
+package com.travelnet.view;
 
-import com.travelnet.Gui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,14 +7,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class TravelPost extends Application {
+public class TravelWindow extends Application {
+
     /**
      * @param stage
      * @throws Exception
      */
-    @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("travel-post.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-window.fxml"));
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 1000, 900);

@@ -1,12 +1,12 @@
-package com.travelnet.cities;
+package com.travelnet.model.cities;
 
-import com.travelnet.users.User;
+import com.travelnet.model.users.User;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Bratislava extends CityTemplate implements City{
-    private final String name = "Bratislava";
+
     public static enum Food{UFO, AUPARK, NIVY, BAMBOO};
     public static enum Vehicle{CAR, BUS, TRAM};
     public static enum Entertainmetn{BCASTLE, DCASTLE, UFO, ZLATEPIESKY}
@@ -18,6 +18,19 @@ public class Bratislava extends CityTemplate implements City{
         distances.put("Prague", 291);
         distances.put("Paris", 1088);
         distances.put("Berling", 553 );
+    }
+
+    public Map<String, Integer> getDistances() {
+        return distances;
+    }
+
+    public void setDistances(Map<String, Integer> distances) {
+        this.distances = distances;
+    }
+
+    public Bratislava(){
+        this.name = "Bratislava";
+        this.imagePath = "src/main/resources/images/city_imgs/Bratislava-870x400.jpg";
     }
 
     @Override

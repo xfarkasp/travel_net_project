@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.GuiController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.controller.GuiController">
    <children>
       <Button layoutX="93.0" layoutY="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Login" />
       <Button fx:id="register" layoutX="173.0" layoutY="150.0" mnemonicParsing="false" onAction="#onRegister" prefHeight="25.0" prefWidth="69.0" text="Register" />
