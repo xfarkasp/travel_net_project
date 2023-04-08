@@ -2,7 +2,7 @@ package com.travelnet.model.users;
 
 import java.util.ArrayList;
 
-public class Adult extends DefaultUser implements User{
+public class Adult extends DefaultUser{
     public Adult(String firstName, String lastName, String email, String password, int age, ArrayList<String> hobbies, ArrayList<String> foods, ArrayList<String> languages, String originCountry) {
         super(firstName, lastName, email, password, age, hobbies, foods, languages, originCountry);
     }
@@ -33,5 +33,14 @@ public class Adult extends DefaultUser implements User{
     @Override
     public void waitTime(int waitTime) {
 
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public String getName() {
+
+        return super.firstName + " " +super.lastName;
     }
 }

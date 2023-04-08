@@ -12,6 +12,24 @@ public class Travel {
     private ArrayList<City>cityList;
     private City currentCity;
 
+    private String about;
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public Travel(User owner, ArrayList<User> companions, ArrayList<City> cityList, City currentCity, String about) {
+        this.owner = owner;
+        this.companions = companions;
+        this.cityList = cityList;
+        this.currentCity = currentCity;
+        this.about = about;
+    }
+
     public Travel(User owner, ArrayList<User> companions, ArrayList<City> cityList, City currentCity) {
         this.owner = owner;
         this.companions = companions;

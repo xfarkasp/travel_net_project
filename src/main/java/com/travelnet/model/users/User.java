@@ -12,4 +12,6 @@ public interface User {
     void setHunger(int hunger);
 
     int getMoney();
+
+    String getName();
 }

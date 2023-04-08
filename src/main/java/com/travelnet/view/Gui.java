@@ -17,7 +17,7 @@ public class Gui extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        stage.setTitle("Hello!");
+        stage.setTitle("Travel-Net login");
         stage.setScene(scene);
         stage.show();
     }

@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="565.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.controller.TravelPostController">
+<VBox fx:id="postVbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="565.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.controller.TravelPostController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="60.0">
          <children>
@@ -52,7 +51,7 @@
             <Insets left="20.0" right="20.0" />
          </padding>
       </HBox>
-      <Label fx:id="captionText" maxWidth="1.7976931348623157E308" text="Caption">
+      <Label fx:id="captionText" maxWidth="1.7976931348623157E308" prefHeight="13.0" prefWidth="515.0" text="Caption">
          <VBox.margin>
             <Insets left="25.0" right="25.0" />
          </VBox.margin>

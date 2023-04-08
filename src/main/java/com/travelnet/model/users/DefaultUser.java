@@ -4,7 +4,7 @@ import com.travelnet.model.utillity.Travel;
 
 import java.util.ArrayList;
 
-abstract class DefaultUser {
+abstract class DefaultUser implements User{
     protected String firstName;
     protected String lastName;
     protected String email;

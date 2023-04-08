@@ -1,5 +1,6 @@
 package com.travelnet.controller;
 
+import com.travelnet.model.cities.Vienna;
 import com.travelnet.view.Gui;
 import com.travelnet.model.cities.Bratislava;
 import com.travelnet.model.cities.City;
@@ -16,6 +17,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
@@ -43,6 +45,25 @@ public class MainWindowController implements Initializable {
 
     private ArrayList<Travel> travelList;
 
+    void addTravel(Travel travel){
+        try {
+        FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../travel-post.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+
+        TravelPostController travelPostController = fxmlLoader.getController();
+        travelPostController.addNew(travel);
+
+
+        travelContainer.getChildren().add(0, root);
+        leftVbox.getChildren().remove(0);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
 
     public void onAddButtonPressed(javafx.scene.input.MouseEvent mouseEvent) {
         System.out.println("input detected");
@@ -50,11 +71,29 @@ public class MainWindowController implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../travel-creator.fxml"));
             VBox vBox = fxmlLoader.load();
-            TravelPostController travelPostController = fxmlLoader.getController();
+            TravelCreatorController travelCreatorController = fxmlLoader.getController();
+            travelCreatorController.setUserData(travelList.get(travelList.size()-1).getOwner());
+            travelCreatorController.setParentMainWindow(this);
             leftVbox.getChildren().add(0, vBox);
+
         }catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setTravelPost() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../travel-post.fxml"));
+            VBox vBox = null;
+
+            vBox = fxmlLoader.load();
+            TravelPostController travelPostController = fxmlLoader.getController();
+            leftVbox.getChildren().add(0, vBox);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     /**
@@ -67,7 +106,7 @@ public class MainWindowController implements Initializable {
         try {
             for(Travel travel: travelList){
 
-                FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("travel-post.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../travel-post.fxml"));
                 VBox vBox = fxmlLoader.load();
                 TravelPostController travelPostController = fxmlLoader.getController();
                 //travelPostController.setData(travel);
@@ -77,4 +116,6 @@ public class MainWindowController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+
 }
