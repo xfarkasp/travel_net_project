@@ -4,30 +4,40 @@ import com.travelnet.model.vechicles.Vehicle;
 
 import java.util.ArrayList;
 
-public class Adult extends DefaultUser{
-    public Adult(String firstName, String lastName, String email, String password, int age, ArrayList<String> hobbies, ArrayList<String> foods, ArrayList<String> languages, String originCountry) {
+public class Mechanix extends DefaultUser{
+    public Mechanix(String firstName, String lastName, String email, String password, int age, ArrayList<String> hobbies, ArrayList<String> foods, ArrayList<String> languages, String originCountry) {
         super(firstName, lastName, email, password, age, hobbies, foods, languages, originCountry);
-        super.userType = "Adult";
+        this.userType = "Mechanix";
     }
 
-    public Adult() {
-        super("Demo", "User", "Demo@demo.de", "demo", 69, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), "Demoland");
-
-    }
-
+    /**
+     * @param user
+     */
     @Override
     public void staminaUsage(User user) {
-        this.stamina -= 10;
+
     }
 
+    /**
+     * @param user
+     */
     @Override
     public void hunger(User user) {
-        this.hunger -= 15;
 
     }
 
+    /**
+     * @param vehicle
+     * @return
+     */
     @Override
     public boolean skill(Vehicle vehicle) {
+        if(vehicle.getCondition() <= 0){
+            vehicle.setCondition(vehicle.getCondition() + 5);
+            hunger -= 5;
+            stamina -= 5;
+            return true;
+        }
 
         return false;
     }
@@ -45,8 +55,7 @@ public class Adult extends DefaultUser{
      */
     @Override
     public String getName() {
-
-        return super.firstName + " " +super.lastName;
+        return null;
     }
 
     /**
@@ -54,6 +63,6 @@ public class Adult extends DefaultUser{
      */
     @Override
     public String getUserType() {
-        return null;
+        return this.userType;
     }
 }

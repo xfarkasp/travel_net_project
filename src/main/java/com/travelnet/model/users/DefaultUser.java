@@ -20,6 +20,8 @@ abstract class DefaultUser implements User{
     protected int money;
     protected int hunger;
 
+    protected String userType;
+
     protected ArrayList<Travel>ownedTravels;
 
     public ArrayList<Travel> getOwnedTravels() {

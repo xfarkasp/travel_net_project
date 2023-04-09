@@ -45,7 +45,6 @@ public class Bratislava extends CityTemplate implements City{
 
     @Override
     public boolean fetchFood(User user, int choice) {
-        System.out.println("Pick restaurant: 1.UFO = $$$$$, 2.Aupark $$, 3.Nivy $$$, 4.Bamboo $$$$");
         int foodCost = 0;
         int nutrition = 0;
         //time it takes to eat in seconds

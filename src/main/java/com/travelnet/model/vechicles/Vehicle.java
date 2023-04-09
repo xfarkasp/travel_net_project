@@ -9,4 +9,7 @@ public interface Vehicle {
     void travelTo(City cityCurrent, City cityNext, Travel travel);
     void maintenance(User user);
     boolean payments(User user, int distance);
+
+    int getCondition();
+    void setCondition(int condition);
 }

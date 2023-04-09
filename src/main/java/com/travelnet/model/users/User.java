@@ -1,9 +1,11 @@
 package com.travelnet.model.users;
 
+import com.travelnet.model.vechicles.Vehicle;
+
 public interface User {
     void staminaUsage(User user);
     void hunger(User user);
-    void skill(User user);
+    boolean skill(Vehicle vehicle);
 
     void waitTime(int waitTime);
 
@@ -14,4 +16,6 @@ public interface User {
     int getMoney();
 
     String getName();
+
+    String getUserType();
 }
