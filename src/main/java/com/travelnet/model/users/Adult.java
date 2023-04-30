@@ -5,15 +5,15 @@ import com.travelnet.model.vechicles.Vehicle;
 import java.util.ArrayList;
 
 public class Adult extends DefaultUser{
-    public Adult(String firstName, String lastName, String email, String password, int age, ArrayList<String> hobbies, ArrayList<String> foods, ArrayList<String> languages, String originCountry) {
-        super(firstName, lastName, email, password, age, hobbies, foods, languages, originCountry);
+    public Adult(String name, String password) {
+        super(name, password);
         super.userType = "Adult";
     }
 
-    public Adult() {
+    /*public Adult() {
         super("Demo", "User", "Demo@demo.de", "demo", 69, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), "Demoland");
 
-    }
+    }*/
 
     @Override
     public void staminaUsage(User user) {
@@ -46,7 +46,7 @@ public class Adult extends DefaultUser{
     @Override
     public String getName() {
 
-        return super.firstName + " " +super.lastName;
+        return super.name;
     }
 
     /**

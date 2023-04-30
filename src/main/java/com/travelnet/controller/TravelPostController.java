@@ -70,7 +70,7 @@ public class TravelPostController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Travel newTravel = new Travel(new Adult(), new ArrayList<User>(), new ArrayList<City>(), new Bratislava());
+        Travel newTravel = new Travel(new Adult("demo", "demo"), new ArrayList<User>(), new ArrayList<City>(), new Bratislava());
         captionText.setText("aaaaaaaaaaaaaa");
         //creating the image object
         InputStream stream = null;

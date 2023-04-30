@@ -1,9 +1,11 @@
 package com.travelnet.controller;
 
+import com.travelnet.model.utillity.TravelCreator;
 import com.travelnet.view.MainWindow;
 import com.travelnet.model.users.UserHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -25,9 +27,12 @@ public class GuiController {
     @FXML
     void onDemoButton(ActionEvent event) {
         try {
-            Stage stage = (Stage) register.getScene().getWindow();
+            //Stage stage = (Stage) register.getScene().getWindow();
+            Stage stage = new Stage();
             MainWindow mainWindow = new MainWindow();
             mainWindow.start(stage);
+            TravelCreator tc = TravelCreator.getInstance();
+            System.out.println(tc.test());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

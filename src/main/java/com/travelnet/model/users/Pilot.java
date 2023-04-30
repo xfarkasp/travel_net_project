@@ -5,8 +5,8 @@ import com.travelnet.model.vechicles.Vehicle;
 import java.util.ArrayList;
 
 public class Pilot extends DefaultUser{
-    public Pilot(String firstName, String lastName, String email, String password, int age, ArrayList<String> hobbies, ArrayList<String> foods, ArrayList<String> languages, String originCountry) {
-        super(firstName, lastName, email, password, age, hobbies, foods, languages, originCountry);
+    public Pilot(String name,  String password) {
+        super(name, password);
         this.userType = "Captain";
     }
 
