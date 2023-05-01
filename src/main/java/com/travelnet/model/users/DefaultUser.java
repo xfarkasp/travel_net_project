@@ -29,6 +29,10 @@ abstract class DefaultUser implements User{
         return password;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -58,6 +62,7 @@ abstract class DefaultUser implements User{
     }
 
     public DefaultUser(String name, String password) {
+        this.name = name;
         this.password = password;
     }
 

@@ -7,13 +7,7 @@ import java.util.ArrayList;
 public class Adult extends DefaultUser{
     public Adult(String name, String password) {
         super(name, password);
-        super.userType = "Adult";
     }
-
-    /*public Adult() {
-        super("Demo", "User", "Demo@demo.de", "demo", 69, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), "Demoland");
-
-    }*/
 
     @Override
     public void staminaUsage(User user) {
@@ -40,20 +34,8 @@ public class Adult extends DefaultUser{
 
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public String getName() {
-
-        return super.name;
-    }
-
-    /**
-     * @return
-     */
     @Override
     public String getUserType() {
-        return null;
+        return userType;
     }
 }

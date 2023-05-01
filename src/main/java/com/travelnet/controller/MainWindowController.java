@@ -1,6 +1,7 @@
 package com.travelnet.controller;
 
 import com.travelnet.model.cities.Vienna;
+import com.travelnet.model.users.UserHandler;
 import com.travelnet.model.utillity.PostObserver;
 import com.travelnet.model.utillity.TravelCreator;
 import com.travelnet.view.Gui;
@@ -47,11 +48,9 @@ public class MainWindowController implements Initializable {
 
     private User logedIn;
 
-    private TravelCreator tc = TravelCreator.getInstance();
+    private TravelCreator tc;
 
-    void addTravel(){
-
-    }
+    private UserHandler uh;
 
     public void update(){
         try {
@@ -113,7 +112,9 @@ public class MainWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            this.logedIn = new Adult("demo", "demo");
+            tc = TravelCreator.getInstance();
+            uh = UserHandler.getInstance();
+            logedIn = uh.getLogedInUsers().get(uh.getLogedInUsers().size() - 1);
             //add this object to observer subjects
             PostObserver.getInstance().subscribe(this);
             for(Travel travel: tc.travelList()){
