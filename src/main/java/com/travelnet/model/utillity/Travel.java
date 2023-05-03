@@ -2,6 +2,7 @@ package com.travelnet.model.utillity;
 
 import com.travelnet.model.cities.City;
 import com.travelnet.model.users.User;
+import com.travelnet.model.vechicles.Plane;
 import com.travelnet.model.vechicles.Vehicle;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ public class Travel {
     private City currentCity;
 
     private String about;
+
+    private Vehicle vehicle = new Plane();
 
     public String getAbout() {
         return about;
@@ -45,17 +48,11 @@ public class Travel {
         return companions;
     }
 
-    public void setCompanions(ArrayList<User> companions) {
-        this.companions = companions;
-    }
 
     public ArrayList<City> getCityList() {
         return cityList;
     }
 
-    public void setCityList(ArrayList<City> cityList) {
-        this.cityList = cityList;
-    }
 
     public City getCurrentCity() {
         return currentCity;
@@ -72,4 +69,11 @@ public class Travel {
     public User getOwner(){return owner;}
     public void setCity(City city){currentCity = city;}
 
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(){
+
+    }
 }

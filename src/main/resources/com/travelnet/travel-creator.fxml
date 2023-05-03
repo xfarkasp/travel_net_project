@@ -32,6 +32,15 @@
          </padding>
       </Label>
       <ChoiceBox fx:id="cityDropdown" prefHeight="25.0" prefWidth="194.0" />
+      <Label prefHeight="17.0" prefWidth="192.0" text="Select vehicle">
+         <font>
+            <Font name="Bell MT" size="16.0" />
+         </font>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </Label>
+      <ChoiceBox fx:id="vehicleDropdown" prefHeight="25.0" prefWidth="194.0" />
       <Label prefHeight="17.0" prefWidth="192.0" text="Caption your goals:">
          <font>
             <Font name="Bodoni MT" size="16.0" />
@@ -40,7 +49,7 @@
             <Insets top="10.0" />
          </padding>
       </Label>
-      <TextArea fx:id="aboutTravel" prefHeight="96.0" prefWidth="193.0">
+      <TextArea fx:id="aboutTravel" prefHeight="74.0" prefWidth="193.0">
          <padding>
             <Insets top="10.0" />
          </padding>
@@ -50,7 +59,7 @@
             <Insets top="25.0" />
          </VBox.margin>
          <image>
-            <Image url="@../../images/icons/icons8-checkmark-48.png" />
+            <Image url="@../../images/icons/icons8-accept-67.png" />
          </image>
       </ImageView>
    </children>

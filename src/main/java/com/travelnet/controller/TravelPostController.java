@@ -1,11 +1,17 @@
 package com.travelnet.controller;
 
+import com.sun.tools.javac.Main;
 import com.travelnet.model.cities.Bratislava;
 import com.travelnet.model.cities.City;
+import com.travelnet.model.cities.Vienna;
 import com.travelnet.model.users.Adult;
 import com.travelnet.model.users.User;
+import com.travelnet.model.utillity.CityVisitor;
+import com.travelnet.model.utillity.PostObserver;
 import com.travelnet.model.utillity.Travel;
+import com.travelnet.view.CityWindow;
 import com.travelnet.view.Gui;
+import com.travelnet.view.MainWindow;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 
+import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -26,6 +33,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class TravelPostController implements Initializable {
     @FXML
@@ -61,9 +69,10 @@ public class TravelPostController implements Initializable {
     @FXML
     private VBox postVbox;
 
-//    public Travel setTravel(){
-//        Travel newTravel = new Travel();
-//    }
+    Travel postTravel;
+
+    MainWindowController mwc;
+
     /**
      * @param url
      * @param resourceBundle
@@ -84,7 +93,8 @@ public class TravelPostController implements Initializable {
 
     }
 
-    public void addNew(Travel travel) {
+    public void addNew(Travel travel, MainWindowController mainWindow) {
+        mwc = mainWindow;
         userName.setText(travel.getOwner().getName());
         try {
             travelImage.setImage(new Image(new FileInputStream(travel.getCurrentCity().getImagePath())));
@@ -97,7 +107,37 @@ public class TravelPostController implements Initializable {
         timeCreated.setText(strDate);
         captionText.setText(travel.getAbout());
         originCountry.setText("Nove Zamky");
-        companionsText.setText("NOT IMPLEMENTED YET");
+        companionsText.setText("Empty");
         countryList.setText("NOT IMPLEMENTED YET");
+        postTravel = travel;
+    }
+    @FXML
+    public void onJoinButton(javafx.scene.input.MouseEvent mouseEvent) {
+        postTravel.getCompanions().add(mwc.getLogedIn());
+        String companions = "";
+        for(User userToPost:postTravel.getCompanions()){
+            companions += userToPost.getName() + " ";
+        }
+        companionsText.setText(companions);
+        //PostObserver.getInstance().notifySubjects();
+    }
+
+    public void onTravel(javafx.scene.input.MouseEvent mouseEvent) {
+        CityVisitor visitor = new CityVisitor();
+        System.out.println(postTravel.getCurrentCity().getClass());
+        if(postTravel.getVehicle().travelTo(postTravel)){
+            CityWindow cw = new CityWindow();
+            Stage stage = (Stage) startTravel.getScene().getWindow();
+            cw.start(stage);
+
+            CityWindowController cwc = new CityWindowController();
+            cwc.setUpUsers(this.postTravel);
+        }
+
+        //visitor.visit(postTravel.getCurrentCity());
+        if(postTravel.getCurrentCity() instanceof Bratislava)
+            visitor.visit((Bratislava) postTravel.getCurrentCity());
+        else if(postTravel.getCurrentCity() instanceof Vienna)
+            visitor.visit((Vienna) postTravel.getCurrentCity());
     }
 }

@@ -10,6 +10,6 @@ public interface City {
     boolean shopping(User user);
 
     String getName();
-    int getDistance(String city);
+    int getDistance();
 
 }

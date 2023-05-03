@@ -5,9 +5,10 @@ import com.travelnet.model.vechicles.Vehicle;
 import java.util.ArrayList;
 
 public class Pilot extends DefaultUser{
-    public Pilot(String name,  String password) {
+    public Pilot(String name, String password) {
         super(name, password);
-        this.userType = "Captain";
+        hunger = 50;
+        stamina = 50;
     }
 
     /**
@@ -56,7 +57,7 @@ public class Pilot extends DefaultUser{
      */
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     /**

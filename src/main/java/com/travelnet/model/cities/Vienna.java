@@ -45,7 +45,7 @@ public class Vienna extends CityTemplate implements City {
      * @return
      */
     @Override
-    public int getDistance(String city) {
+    public int getDistance() {
         return 0;
     }
 }

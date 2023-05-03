@@ -13,20 +13,22 @@ public class Car implements Vehicle {
     protected int kmCounter;
 
     @Override
-    public void travelTo(City cityCurrent, City cityNext, Travel travel) {
+    public boolean travelTo(Travel travel) {
+        City cityCurrent = travel.getCurrentCity();
         if(condition > 0){
-            int distance = cityCurrent.getDistance(cityNext.getName());
+            int distance = cityCurrent.getDistance();
             if(!payments(travel.getOwner(), distance)){
                 System.out.println("You don't have enough money to travel;");
-                return;
+                return false;
             }
             kmCounter += distance;
             //here a thread will begin to count the cooldown
             int timeOut = speedFactor * distance;
 
-            travel.setCity(cityNext);
+            travel.setCity(cityCurrent);
         }
         System.out.println("The car is in bad condition, call a mechanic");
+        return false;
     }
 
     @Override

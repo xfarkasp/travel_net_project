@@ -8,6 +8,7 @@ public class PostObserver {
     private static final PostObserver instance = new PostObserver();
     private PostObserver(){tnInstances = new ArrayList<>();};
     private ArrayList<MainWindowController> tnInstances;
+
     public static PostObserver getInstance(){
         return instance;
     }

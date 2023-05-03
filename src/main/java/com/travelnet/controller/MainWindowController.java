@@ -58,7 +58,7 @@ public class MainWindowController implements Initializable {
             Parent root = (Parent) fxmlLoader.load();
 
             TravelPostController travelPostController = fxmlLoader.getController();
-            travelPostController.addNew(tc.travelList().get(tc.travelList().size() - 1));
+            travelPostController.addNew(tc.travelList().get(tc.travelList().size() - 1), this);
 
             travelContainer.getChildren().add(0, root);
             if(leftVbox.getChildren().size() > 0)
@@ -74,8 +74,7 @@ public class MainWindowController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../travel-creator.fxml"));
             VBox vBox = fxmlLoader.load();
             TravelCreatorController travelCreatorController = fxmlLoader.getController();
-            if(tc.travelList().size() > 0 )
-                travelCreatorController.setUserData(tc.travelList().get(tc.travelList().size()-1).getOwner());
+            travelCreatorController.setUserData(logedIn);
             travelCreatorController.setParentMainWindow(this);
             leftVbox.getChildren().add(0, vBox);
             TravelCreator tc = TravelCreator.getInstance();
@@ -121,7 +120,7 @@ public class MainWindowController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../travel-post.fxml"));
                 VBox vBox = fxmlLoader.load();
                 TravelPostController travelPostController = fxmlLoader.getController();
-                travelPostController.addNew(travel);
+                travelPostController.addNew(travel, this);
                 travelContainer.getChildren().add(vBox);
             }
         }catch (IOException e) {

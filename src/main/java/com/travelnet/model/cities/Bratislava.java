@@ -12,21 +12,14 @@ public class Bratislava extends CityTemplate implements City{
     public static enum Entertainmetn{BCASTLE, DCASTLE, UFO, ZLATEPIESKY}
     public static enum Hotel{MLADOST, GRAND, RIVER};
 
-    private  Map<String, Integer> distances = new HashMap<String, Integer>();
-    {
-        distances.put("Vienna", 55);
-        distances.put("Prague", 291);
-        distances.put("Paris", 1088);
-        distances.put("Berling", 553 );
+    private int distance = 50;
+
+
+    public int getDistance() {
+        return distance;
     }
 
-    public Map<String, Integer> getDistances() {
-        return distances;
-    }
 
-    public void setDistances(Map<String, Integer> distances) {
-        this.distances = distances;
-    }
 
     public Bratislava(){
         this.name = "Bratislava";
@@ -38,8 +31,10 @@ public class Bratislava extends CityTemplate implements City{
         return name;
     }
 
+
+
     public int getDistance(String city) {
-        return distances.get(city);
+        return distance;
     }
 
 

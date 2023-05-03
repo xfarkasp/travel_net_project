@@ -1,40 +1,48 @@
 package com.travelnet.model.vechicles;
 
 import com.travelnet.model.cities.City;
+import com.travelnet.model.users.Pilot;
 import com.travelnet.model.users.User;
 import com.travelnet.model.utillity.Travel;
 
+import java.util.concurrent.TimeUnit;
+
 public class Plane implements Vehicle{
-    protected int speedFactor = 1;
+    protected int speedFactor = 15;
 
     protected int condition = 30;
     protected int failFactor = 10;
     protected int cost = 10;
     protected int kmCounter;
-    /**
-     * @param cityCurrent
-     * @param cityNext
-     * @param travel
-     */
+    private int timeLeft;
+
     @Override
-    public void travelTo(City cityCurrent, City cityNext, Travel travel) {
+    public boolean travelTo(Travel travel) {
+        City cityCurrent = travel.getCurrentCity();
+        if(travel.getCompanions().size() == 0){
+            System.out.println("no companions");
+            return false;
+        }
         for(int i = 0; i < travel.getCompanions().size(); i++){
-            if(travel.getCompanions().get(i).getUserType().equals("Pilot")){
-                int distance = cityCurrent.getDistance(cityNext.getName());
-                if (!payments(travel.getOwner(), distance)) {
-                    System.out.println("You don't have enough money to travel;");
-                    return;
-                }
+            if(travel.getCompanions().get(i) instanceof Pilot){
+                //int distance = cityCurrent.getDistance(cityCurrent.getName());
+
                 if(travel.getCompanions().get(i).skill(this)) {
-
-                    kmCounter += distance;
-                    //here a thread will begin to count the cooldown
-                    int timeOut = speedFactor * distance;
-
-                    travel.setCity(cityNext);
+                    kmCounter += cityCurrent.getDistance();
+                    while (speedFactor != 0){
+                        timeLeft = speedFactor;
+                        speedFactor--;
+                        /*try {
+                            TimeUnit.SECONDS.sleep(1);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }*/
+                    }
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     /**
@@ -65,7 +73,7 @@ public class Plane implements Vehicle{
      */
     @Override
     public int getCondition() {
-        return 0;
+        return condition;
     }
 
     /**

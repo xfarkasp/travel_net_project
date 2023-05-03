@@ -94,12 +94,12 @@
       </ImageView>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
          <children>
-            <ImageView fx:id="startTravel" fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="startTravel" fitHeight="96.0" fitWidth="96.0" onMouseClicked="#onTravel" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/icons/icons8-airplane-take-off-96.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="joinTravel" fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="joinTravel" fitHeight="96.0" fitWidth="96.0" onMouseClicked="#onJoinButton" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/icons/icons8-join-96.png" />
                </image>

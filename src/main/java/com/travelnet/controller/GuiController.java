@@ -1,7 +1,6 @@
 package com.travelnet.controller;
 
 import com.travelnet.model.users.User;
-import com.travelnet.view.Gui;
 import com.travelnet.view.MainWindow;
 import com.travelnet.model.users.UserHandler;
 import com.travelnet.view.RegisterWindow;
@@ -10,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -62,11 +63,14 @@ public class GuiController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }@FXML
+    }
+
+    @FXML
     public void onLogin(ActionEvent actionEvent) {
         try {
             User user = uh.loginUser(username.getText(), password.getText());
-            if(user != null);{
+            if (user != null) ;
+            {
                 uh.getLogedInUsers().add(user);
                 Stage stage = new Stage();
                 MainWindow mainWindow = new MainWindow();
@@ -76,6 +80,7 @@ public class GuiController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
     /**
      * @param url
      * @param resourceBundle
@@ -84,4 +89,5 @@ public class GuiController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.uh = UserHandler.getInstance();
     }
+
 }
