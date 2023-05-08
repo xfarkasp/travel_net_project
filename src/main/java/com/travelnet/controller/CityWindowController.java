@@ -1,7 +1,10 @@
 package com.travelnet.controller;
 
 import com.travelnet.model.users.User;
+import com.travelnet.model.users.UserHandler;
+import com.travelnet.model.utillity.PostObserver;
 import com.travelnet.model.utillity.Travel;
+import com.travelnet.model.utillity.TravelCreator;
 import com.travelnet.view.Gui;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +22,12 @@ import java.util.ResourceBundle;
 
 import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
-public class CityWindowController {
+public class CityWindowController implements Initializable {
 
+    public VBox leftVbox;
+
+    @FXML
+    public VBox userContainer;
     @FXML
     private ImageView chatButton;
 
@@ -46,7 +53,7 @@ public class CityWindowController {
     private Pane leftPane;
 
     @FXML
-    private VBox leftVbox;
+    private VBox usersBox;
 
     @FXML
     private ImageView nextTravelButton;
@@ -93,6 +100,8 @@ public class CityWindowController {
     private boolean zazitokFlag = false;
     private boolean restauraciaFlag = false;
     private boolean hotelFlag = false;
+
+    private Travel currentTravel;
 
     @FXML
     void eatClicked(MouseEvent event) {
@@ -160,6 +169,7 @@ public class CityWindowController {
 
     }
 
+    @FXML
     public void setUpUsers(Travel travel){
         for(User user: travel.getCompanions()){
             FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../user-status.fxml"));
@@ -169,8 +179,15 @@ public class CityWindowController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            UserStatusController travelPostController = fxmlLoader.getController();
-            leftVbox.getChildren().add(vBox);
+            userContainer.getChildren().add(vBox);
         }
+    }
+
+    public void setTravel(Travel travel){
+        this.currentTravel = travel;
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        userContainer.getChildren();
     }
 }

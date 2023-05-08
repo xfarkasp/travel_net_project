@@ -53,17 +53,10 @@
                </padding>
             </HBox>
          </bottom>
-         <left>
-            <Pane fx:id="leftPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="390.0" prefWidth="197.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox fx:id="leftVbox" layoutX="6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-               </children>
-            </Pane>
-         </left>
          <right>
-            <VBox prefHeight="383.0" prefWidth="207.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="481.0" prefWidth="207.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="showRestaurants" mnemonicParsing="false" onMouseClicked="#showRestaurantsClicked" prefHeight="45.0" prefWidth="207.0" text="Show Restaurants" />
+                  <Button fx:id="showRestaurants" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#showRestaurantsClicked" prefHeight="45.0" prefWidth="207.0" text="Show Restaurants" textAlignment="CENTER" />
                   <Button fx:id="showInterests" mnemonicParsing="false" onMouseClicked="#showInterestsClicked" prefHeight="45.0" prefWidth="207.0" text="Show Places of interest" />
                   <Button fx:id="showHotels" mnemonicParsing="false" onMouseClicked="#showHotelsClicked" prefHeight="45.0" prefWidth="207.0" text="Show Hotels" />
                   <Button fx:id="eatButton" mnemonicParsing="false" onMouseClicked="#eatClicked" prefHeight="45.0" prefWidth="207.0" text="Eat" />
@@ -74,7 +67,7 @@
                   <Insets right="5.0" top="5.0" />
                </BorderPane.margin>
                <padding>
-                  <Insets bottom="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
          </right>
@@ -123,6 +116,9 @@
                </children>
             </Pane>
          </center>
+         <left>
+            <VBox fx:id="userContainer" prefHeight="546.0" prefWidth="187.0" BorderPane.alignment="CENTER" />
+         </left>
       </BorderPane>
    </children>
 </AnchorPane>

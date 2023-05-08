@@ -129,9 +129,7 @@ public class TravelPostController implements Initializable {
             CityWindow cw = new CityWindow();
             Stage stage = (Stage) startTravel.getScene().getWindow();
             cw.start(stage);
-
-            CityWindowController cwc = new CityWindowController();
-            cwc.setUpUsers(this.postTravel);
+            cw.getControllerInstance().setUpUsers(this.postTravel);
         }
 
         //visitor.visit(postTravel.getCurrentCity());
