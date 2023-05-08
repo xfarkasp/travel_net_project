@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -87,6 +88,20 @@
             </HBox>
          </children>
       </VBox>
+      <Pane prefHeight="30.0" prefWidth="205.0">
+         <children>
+            <Label fx:id="timeLeft" layoutX="200.0" layoutY="-4.0" prefHeight="17.0" prefWidth="198.0" text="TIME LEFT" visible="false">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="arivalText" layoutX="14.0" layoutY="-4.0" prefHeight="17.0" prefWidth="198.0" text="Arrival time in:" visible="false">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <ImageView fx:id="travelImage" fitHeight="535.0" fitWidth="535.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/city_imgs/atlantis-1024x576.jpg-.jpg" />

@@ -11,6 +11,8 @@ public interface User {
 
     void setMoney(int money);
     int getHunger();
+
+    int getStamina();
     void setHunger(int hunger);
 
     int getMoney();
@@ -20,4 +22,6 @@ public interface User {
     String getPassword();
 
     String getUserType();
+
+
 }

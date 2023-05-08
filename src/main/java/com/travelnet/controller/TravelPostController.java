@@ -9,9 +9,15 @@ import com.travelnet.model.users.User;
 import com.travelnet.model.utillity.CityVisitor;
 import com.travelnet.model.utillity.PostObserver;
 import com.travelnet.model.utillity.Travel;
+import com.travelnet.model.vechicles.Plane;
 import com.travelnet.view.CityWindow;
 import com.travelnet.view.Gui;
 import com.travelnet.view.MainWindow;
+import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -68,6 +74,11 @@ public class TravelPostController implements Initializable {
 
     @FXML
     private VBox postVbox;
+
+    @FXML
+    private Label timeLeft;
+    @FXML
+    private Label arivalText;
 
     Travel postTravel;
 
@@ -126,16 +137,58 @@ public class TravelPostController implements Initializable {
         CityVisitor visitor = new CityVisitor();
         System.out.println(postTravel.getCurrentCity().getClass());
         if(postTravel.getVehicle().travelTo(postTravel)){
-            CityWindow cw = new CityWindow();
-            Stage stage = (Stage) startTravel.getScene().getWindow();
-            cw.start(stage);
-            cw.getControllerInstance().setUpUsers(this.postTravel);
+            travelImage.setImage(new Image("images/gif/travel-map-destinations-aqmubawbrhnfybku.gif"));
+            arivalText.setVisible(true);
+            new delayService("pain").start();
+
         }
 
         //visitor.visit(postTravel.getCurrentCity());
-        if(postTravel.getCurrentCity() instanceof Bratislava)
-            visitor.visit((Bratislava) postTravel.getCurrentCity());
-        else if(postTravel.getCurrentCity() instanceof Vienna)
-            visitor.visit((Vienna) postTravel.getCurrentCity());
+//        if(postTravel.getCurrentCity() instanceof Bratislava)
+//            visitor.visit((Bratislava) postTravel.getCurrentCity());
+//        else if(postTravel.getCurrentCity() instanceof Vienna)
+//            visitor.visit((Vienna) postTravel.getCurrentCity());
+    }
+
+
+    public class delayService extends Service<String> {
+        private delayService(String timeLeft){
+            setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent workerStateEvent) {
+                    CityWindow cw = new CityWindow();
+                    Stage stage = (Stage) startTravel.getScene().getWindow();
+                    cw.start(stage);
+                    cw.getControllerInstance().setUpUsers(TravelPostController.this.postTravel);
+                }
+            });
+        }
+
+        /**
+         * @return
+         */
+        @Override
+        protected Task<String> createTask() {
+            return new Task<String>() {
+                @Override
+                protected String call() throws Exception {
+                    int timeLeft =  postTravel.getVehicle().getTimeLeft();
+                    do{
+
+                        timeLeft =  postTravel.getVehicle().getTimeLeft();
+
+                        Platform.runLater(() -> {
+                            TravelPostController.this.timeLeft.setVisible(true);
+                            TravelPostController.this.timeLeft.setText(String.valueOf(postTravel.getVehicle().getTimeLeft()));
+                        });
+                        Thread.sleep(1000);
+                    }while(timeLeft != 0);
+
+                    return "ok";
+                }
+            };
+        }
     }
 }
+
+

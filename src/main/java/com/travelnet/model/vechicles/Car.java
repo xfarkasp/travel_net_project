@@ -59,4 +59,12 @@ public class Car implements Vehicle {
 
     @Override
     public void setCondition(int condition) {this.condition = condition;}
+
+    /**
+     * @return
+     */
+    @Override
+    public int getTimeLeft() {
+        return 0;
+    }
 }

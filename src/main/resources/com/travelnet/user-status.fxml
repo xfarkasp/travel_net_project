@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="200.0" prefWidth="165.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.controller.UserStatusController">
+<VBox alignment="CENTER" prefHeight="186.0" prefWidth="132.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.controller.UserStatusController">
    <children>
       <HBox prefHeight="30.0" prefWidth="193.0">
          <children>
@@ -19,9 +19,9 @@
             <Label fx:id="username" prefHeight="38.0" prefWidth="101.0" text="USERNAME" />
          </children>
       </HBox>
-      <Label fx:id="typeValue" prefHeight="37.0" prefWidth="71.0" text="Type:" />
-      <Label text="Stamina:" />
-      <Label fx:id="staminaValue" text="STAMINA" />
+      <Label fx:id="typeValue" alignment="CENTER" prefHeight="37.0" prefWidth="71.0" text="Type:" />
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Stamina:" />
+      <Label fx:id="staminaValue" alignment="CENTER" text="STAMINA" />
       <Label text="Hunger:" />
       <Label fx:id="hungerValue" text="HUNGER" />
       <Button mnemonicParsing="false" onMouseClicked="#useAbility" text="Use ability" />

@@ -176,6 +176,8 @@ public class CityWindowController implements Initializable {
             VBox vBox = null;
             try {
                 vBox = fxmlLoader.load();
+                UserStatusController usc = fxmlLoader.getController();
+                usc.setUsers(user);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

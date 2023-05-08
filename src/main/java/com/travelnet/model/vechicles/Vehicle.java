@@ -2,6 +2,7 @@ package com.travelnet.model.vechicles;
 
 import com.travelnet.model.users.User;
 import com.travelnet.model.utillity.Travel;
+import javafx.concurrent.Service;
 
 public interface Vehicle {
     default void defatult(){
@@ -13,4 +14,13 @@ public interface Vehicle {
 
     int getCondition();
     void setCondition(int condition);
+
+    int getTimeLeft();
+
+
+
+
+
+
+
 }

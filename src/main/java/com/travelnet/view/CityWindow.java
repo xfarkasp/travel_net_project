@@ -18,7 +18,7 @@ public class CityWindow extends Application {
 
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 1000, 720);
+            scene = new Scene(fxmlLoader.load(), 1000, 820);
             controllerInstance = fxmlLoader.getController();
         } catch (IOException e) {
             throw new RuntimeException(e);

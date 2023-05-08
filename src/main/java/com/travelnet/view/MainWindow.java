@@ -19,7 +19,7 @@ public class MainWindow extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../main-window.fxml"));
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 1000, 720);
+            scene = new Scene(fxmlLoader.load(), 1000, 820);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
