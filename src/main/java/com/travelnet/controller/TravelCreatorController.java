@@ -1,5 +1,6 @@
 package com.travelnet.controller;
 
+import com.travelnet.model.Exceptions.EmptyInputException;
 import com.travelnet.model.cities.Bratislava;
 import com.travelnet.model.cities.City;
 import com.travelnet.model.cities.Vienna;
@@ -29,6 +30,8 @@ public class TravelCreatorController implements Initializable {
 
     @FXML
     private ChoiceBox<String> cityDropdown;
+    @FXML
+    private ChoiceBox<String> vehicleDropdown;
 
     @FXML
     private ImageView subbmitButton;
@@ -53,6 +56,9 @@ public class TravelCreatorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cityDropdown.getItems().add("Bratislava");
         cityDropdown.getItems().add("Vienna");
+
+        vehicleDropdown.getItems().add("Car");
+        vehicleDropdown.getItems().add("Plane");
     }
 
     private Travel travel;
@@ -62,20 +68,34 @@ public class TravelCreatorController implements Initializable {
     }
 
     @FXML
-    void onsubbmitButton(MouseEvent event) {
+    void onsubbmitButton(MouseEvent event) throws EmptyInputException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../travel-post.fxml"));
         try {
             Parent root = (Parent) fxmlLoader.load();
+            if(cityDropdown.getValue() == null)
+                throw new EmptyInputException("City field is empty!", new RuntimeException());
+            if(vehicleDropdown.getValue() == null)
+                throw new EmptyInputException("Vehicle field is empty!", new RuntimeException());
+
+            TravelPostController travelPostController = fxmlLoader.getController();
+
+            TravelCreator tc = TravelCreator.getInstance();
+            System.out.println(tc.test());
+            tc.createTravel(cityDropdown.getValue(), vehicleDropdown.getValue(),aboutTravel.getText(),mainWindowController.getLogedIn());
+
+            PostObserver.getInstance().notifySubjects();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }catch(EmptyInputException e){
+            System.out.println(e.getMessage());
+            if(e.getMessage().equals("City field is empty!"))
+                cityDropdown.setValue("You must select a city!");
+            else if(e.getMessage().equals("Vehicle field is empty!"))
+                vehicleDropdown.setValue("You must select a Vehicle!");
         }
-        TravelPostController travelPostController = fxmlLoader.getController();
 
-        TravelCreator tc = TravelCreator.getInstance();
-        System.out.println(tc.test());
-        tc.createTravel(cityDropdown.getValue(), aboutTravel.getText(),mainWindowController.getLogedIn());
 
-        PostObserver.getInstance().notifySubjects();
+
     }
 
     void setParentMainWindow(MainWindowController mainWindowController){

@@ -5,6 +5,9 @@ import com.travelnet.model.cities.City;
 import com.travelnet.model.cities.Vienna;
 import com.travelnet.model.users.Adult;
 import com.travelnet.model.users.User;
+import com.travelnet.model.vechicles.Car;
+import com.travelnet.model.vechicles.Plane;
+import com.travelnet.model.vechicles.Vehicle;
 
 import java.util.ArrayList;
 
@@ -21,13 +24,21 @@ public class TravelCreator {
     public static TravelCreator getInstance(){
         return instance;
     }
-    public void createTravel(String city, String about, User creator){
-        Travel newTravel = null;
+    public void createTravel(String city, String vehicle, String about, User creator){
+        City newCity = null;
+        Vehicle newVehcile = null;
         if(city == "Bratislava")
-            newTravel = new Travel(creator, new ArrayList<User>(), new ArrayList<City>(), new Bratislava(), about);
+            newCity = new Bratislava();
         else if(city == "Vienna")
-            newTravel = new Travel(creator, new ArrayList<User>(), new ArrayList<City>(), new Vienna(), about);
+            newCity = new Vienna();
 
+        if(vehicle == "Car")
+            newVehcile = new Car();
+
+        else if(vehicle == "Plane")
+            newVehcile = new Plane();
+
+        Travel newTravel = new Travel(creator, new ArrayList<User>(), newCity, newVehcile, about);
         travelDataBase.add(newTravel);
     }
 

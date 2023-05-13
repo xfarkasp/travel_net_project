@@ -15,7 +15,7 @@ public class Travel {
 
     private String about;
 
-    private Vehicle vehicle = new Plane();
+    private Vehicle vehicle;
 
     public String getAbout() {
         return about;
@@ -25,11 +25,11 @@ public class Travel {
         this.about = about;
     }
 
-    public Travel(User owner, ArrayList<User> companions, ArrayList<City> cityList, City currentCity, String about) {
+    public Travel(User owner, ArrayList<User> companions,  City currentCity, Vehicle vehicle, String about) {
         this.owner = owner;
         this.companions = companions;
-        this.cityList = cityList;
         this.currentCity = currentCity;
+        this.vehicle = vehicle;
         this.about = about;
     }
 
