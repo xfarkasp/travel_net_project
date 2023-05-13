@@ -16,7 +16,10 @@ import javafx.stage.Stage;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GuiController implements Initializable {
@@ -107,6 +110,18 @@ public class GuiController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.uh = UserHandler.getInstance();
+        try {
+            FileInputStream loadUDB =  new FileInputStream("src/main/resources/serialization/UserDB.ser");
+            ObjectInputStream load = new ObjectInputStream(loadUDB);
+
+            uh.setUserList((ArrayList<User>) load.readObject());
+
+            load.close();
+            loadUDB.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

@@ -11,6 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,6 +35,7 @@ public class RegisterWindowController implements Initializable {
     @FXML
     void registerButtonClick(javafx.scene.input.MouseEvent mouseEvent) {
         uh.registerUser(registerUsername.getText(), registerPasswd.getText(), userTypeDropdown.getValue());
+        exitSequence();
         Stage stage = (Stage) registerButton.getScene().getWindow();
         Gui login = new Gui();
         login.start(stage);
@@ -44,6 +47,21 @@ public class RegisterWindowController implements Initializable {
         userTypeDropdown.getItems().add("Adult");
         userTypeDropdown.getItems().add("Pilot");
         userTypeDropdown.getItems().add("Mechanic");
+    }
+
+    public void exitSequence(){
+        System.out.println("exiting");
+
+        try {
+            FileOutputStream saveUDB =  new FileOutputStream("src/main/resources/serialization/UserDB.ser");
+            ObjectOutputStream save = new ObjectOutputStream(saveUDB);
+            save.writeObject(uh.getUserList());
+            save.close();
+            saveUDB.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
