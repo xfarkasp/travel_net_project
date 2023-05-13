@@ -3,32 +3,45 @@ package com.travelnet.model.vechicles;
 import com.travelnet.model.cities.City;
 import com.travelnet.model.users.User;
 import com.travelnet.model.utillity.Travel;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
+
+import java.util.concurrent.TimeUnit;
 
 public class Car implements Vehicle {
-    protected int speedFactor = 3;
+    protected int speedFactor = 15;
 
     protected int condition = 15;
     protected int failFactor = 3;
-    protected int cost = 2;
+
     protected int kmCounter;
 
-    @Override
+    private int timeLeft;
+
+   /* @Override
     public boolean travelTo(Travel travel) {
         City cityCurrent = travel.getCurrentCity();
         if(condition > 0){
             int distance = cityCurrent.getDistance();
-            if(!payments(travel.getOwner(), distance)){
-                System.out.println("You don't have enough money to travel;");
-                return false;
-            }
-            kmCounter += distance;
-            //here a thread will begin to count the cooldown
-            int timeOut = speedFactor * distance;
 
-            travel.setCity(cityCurrent);
+                kmCounter += cityCurrent.getDistance();
+                new Car.threadService("pain").start();
+                return true;
+
+
         }
         System.out.println("The car is in bad condition, call a mechanic");
         return false;
+    }*/
+
+    /**
+     * @return
+     */
+    @Override
+    public int getSpeed() {
+        return speedFactor;
     }
 
     @Override
@@ -41,16 +54,16 @@ public class Car implements Vehicle {
 
     }
 
-    @Override
+   /* @Override
     public boolean payments(User user, int distance) {
         if(user.getMoney() >= distance){
-            user.setMoney(user.getMoney() - (distance * cost));
+
             System.out.println("Payment was succesful");
             return true;
         }
         System.out.println("You don't have enough money to travel");
         return false;
-    }
+    }*/
 
 
     @Override
@@ -63,8 +76,45 @@ public class Car implements Vehicle {
     /**
      * @return
      */
-    @Override
-    public int getTimeLeft() {
-        return 0;
+
+
+    private void delayCounter(){
+        timeLeft = speedFactor;
+        while (timeLeft != 0) {
+            timeLeft--;
+            try {
+                System.out.println(timeLeft);
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+
+            }
+        }
+    }
+
+    public class threadService extends Service<String> {
+        private threadService(String timeLeft){
+            setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent workerStateEvent) {
+
+                }
+            });
+        }
+
+
+        /**
+         * @return
+         */
+        @Override
+        protected Task<String> createTask() {
+            return new Task<String>() {
+                @Override
+                protected String call() throws Exception {
+                    Car.this.delayCounter();
+                    return "ok";
+                }
+            };
+        }
     }
 }

@@ -4,22 +4,19 @@ import com.travelnet.model.users.User;
 import com.travelnet.model.utillity.Travel;
 import javafx.concurrent.Service;
 
+import java.util.concurrent.TimeUnit;
+
 public interface Vehicle {
     default void defatult(){
-        System.out.println("default vehicle method");
+        return;
     };
-    boolean travelTo(Travel travel);
+
+    int getSpeed();
+
     void maintenance(User user);
-    boolean payments(User user, int distance);
 
     int getCondition();
     void setCondition(int condition);
-
-    int getTimeLeft();
-
-
-
-
 
 
 

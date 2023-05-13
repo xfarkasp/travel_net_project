@@ -4,11 +4,15 @@ import com.sun.tools.javac.Main;
 import com.travelnet.model.cities.Bratislava;
 import com.travelnet.model.cities.City;
 import com.travelnet.model.cities.Vienna;
+import com.travelnet.model.strategy.TravelCarStrategy;
+import com.travelnet.model.strategy.TravelPlaneStrategy;
+import com.travelnet.model.strategy.TravelStrategy;
 import com.travelnet.model.users.Adult;
 import com.travelnet.model.users.User;
 import com.travelnet.model.utillity.CityVisitor;
 import com.travelnet.model.utillity.PostObserver;
 import com.travelnet.model.utillity.Travel;
+import com.travelnet.model.vechicles.Car;
 import com.travelnet.model.vechicles.Plane;
 import com.travelnet.view.CityWindow;
 import com.travelnet.view.Gui;
@@ -84,6 +88,8 @@ public class TravelPostController implements Initializable {
 
     MainWindowController mwc;
 
+    TravelStrategy actualStrategy;
+
     /**
      * @param url
      * @param resourceBundle
@@ -136,18 +142,27 @@ public class TravelPostController implements Initializable {
     public void onTravel(javafx.scene.input.MouseEvent mouseEvent) {
         CityVisitor visitor = new CityVisitor();
         System.out.println(postTravel.getCurrentCity().getClass());
-        if(postTravel.getVehicle().travelTo(postTravel)){
-            travelImage.setImage(new Image("images/gif/travel-map-destinations-aqmubawbrhnfybku.gif"));
-            arivalText.setVisible(true);
-            new delayService("pain").start();
-
+        if(postTravel.getVehicle() instanceof Plane)
+            travel(new TravelPlaneStrategy(postTravel));
+        else if (postTravel.getVehicle() instanceof Car) {
+            travel(new TravelCarStrategy(postTravel));
         }
+
 
         //visitor.visit(postTravel.getCurrentCity());
 //        if(postTravel.getCurrentCity() instanceof Bratislava)
 //            visitor.visit((Bratislava) postTravel.getCurrentCity());
 //        else if(postTravel.getCurrentCity() instanceof Vienna)
 //            visitor.visit((Vienna) postTravel.getCurrentCity());
+    }
+
+    public void travel(TravelStrategy travelMethod){
+        if(travelMethod.travelTo()){
+            this.actualStrategy = travelMethod;
+            travelImage.setImage(new Image(travelMethod.getTravelAnimation()));
+            arivalText.setVisible(true);
+            new delayService("pain").start();
+        }
     }
 
 
@@ -172,14 +187,14 @@ public class TravelPostController implements Initializable {
             return new Task<String>() {
                 @Override
                 protected String call() throws Exception {
-                    int timeLeft =  postTravel.getVehicle().getTimeLeft();
+                    int timeLeft =  actualStrategy.getTimeLeft();
                     do{
 
-                        timeLeft =  postTravel.getVehicle().getTimeLeft();
+                        timeLeft =  actualStrategy.getTimeLeft();
 
                         Platform.runLater(() -> {
                             TravelPostController.this.timeLeft.setVisible(true);
-                            TravelPostController.this.timeLeft.setText(String.valueOf(postTravel.getVehicle().getTimeLeft()));
+                            TravelPostController.this.timeLeft.setText(String.valueOf(actualStrategy.getTimeLeft()));
                         });
                         Thread.sleep(1000);
                     }while(timeLeft != 0);
