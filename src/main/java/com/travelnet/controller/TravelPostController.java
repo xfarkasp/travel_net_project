@@ -141,11 +141,12 @@ public class TravelPostController implements Initializable {
 
     public void onTravel(javafx.scene.input.MouseEvent mouseEvent) {
         CityVisitor visitor = new CityVisitor();
-        System.out.println(postTravel.getCurrentCity().getClass());
-        if(postTravel.getVehicle() instanceof Plane)
-            travel(new TravelPlaneStrategy(postTravel));
-        else if (postTravel.getVehicle() instanceof Car) {
-            travel(new TravelCarStrategy(postTravel));
+        if(postTravel.getCompanions().size() > 0) {
+            if (postTravel.getVehicle() instanceof Plane)
+                travel(new TravelPlaneStrategy(postTravel));
+            else if (postTravel.getVehicle() instanceof Car) {
+                travel(new TravelCarStrategy(postTravel));
+            }
         }
 
 

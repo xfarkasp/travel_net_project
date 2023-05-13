@@ -39,11 +39,6 @@
                         <Image url="@../../images/icons/icons8-exit-sign-64.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="chatButton" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/icons/icons8-same-opinion-48.png" />
-                     </image>
-                  </ImageView>
                </children>
                <BorderPane.margin>
                   <Insets left="25.0" right="25.0" />
@@ -56,12 +51,24 @@
          <right>
             <VBox alignment="CENTER" prefHeight="481.0" prefWidth="207.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
+                  <HBox prefHeight="50.0" prefWidth="197.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="vehicleIMG" fitHeight="63.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="63.0" prefWidth="131.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="107.0" text="Vehicle condition:" />
+                              <Label fx:id="condition" alignment="CENTER" prefHeight="42.0" prefWidth="117.0" text="Label" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                   <Button fx:id="showRestaurants" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#showRestaurantsClicked" prefHeight="45.0" prefWidth="207.0" text="Show Restaurants" textAlignment="CENTER" />
                   <Button fx:id="showInterests" mnemonicParsing="false" onMouseClicked="#showInterestsClicked" prefHeight="45.0" prefWidth="207.0" text="Show Places of interest" />
                   <Button fx:id="showHotels" mnemonicParsing="false" onMouseClicked="#showHotelsClicked" prefHeight="45.0" prefWidth="207.0" text="Show Hotels" />
-                  <Button fx:id="eatButton" mnemonicParsing="false" onMouseClicked="#eatClicked" prefHeight="45.0" prefWidth="207.0" text="Eat" />
-                  <Button fx:id="visitButton" mnemonicParsing="false" onMouseClicked="#visitClicked" prefHeight="45.0" prefWidth="207.0" text="Visit" />
-                  <Button fx:id="restButton" mnemonicParsing="false" onMouseClicked="#restClicked" prefHeight="45.0" prefWidth="207.0" text="Rest" />
                </children>
                <BorderPane.margin>
                   <Insets right="5.0" top="5.0" />

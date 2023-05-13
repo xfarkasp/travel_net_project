@@ -3,6 +3,7 @@ package com.travelnet.model.cities;
 import com.travelnet.model.users.User;
 
 public class Vienna extends CityTemplate implements City {
+    private int distance = 60;
     /**
      * @return
      */
@@ -40,12 +41,9 @@ public class Vienna extends CityTemplate implements City {
         return null;
     }
 
-    /**
-     * @param city
-     * @return
-     */
+
     @Override
     public int getDistance() {
-        return 0;
+        return distance;
     }
 }

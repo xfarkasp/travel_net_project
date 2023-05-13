@@ -37,6 +37,7 @@ public class TravelPlaneStrategy implements TravelStrategy{
 
                     if (travel.getCompanions().get(i).skill(travel.getVehicle())) {
                         kmCounter += cityCurrent.getDistance();
+
                         new threadService("pain").start();
                         return true;
                     }
@@ -63,7 +64,7 @@ public class TravelPlaneStrategy implements TravelStrategy{
     }
 
     private void delayCounter(){
-        timeLeft = travel.getVehicle().getSpeed();
+        timeLeft = this.travel.getCurrentCity().getDistance()/10 + travel.getVehicle().getSpeed();
         while (timeLeft != 0) {
             timeLeft--;
             try {

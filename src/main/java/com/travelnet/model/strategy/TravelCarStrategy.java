@@ -38,7 +38,7 @@ public class TravelCarStrategy implements TravelStrategy{
     }
 
     private void delayCounter(){
-        timeLeft = travel.getVehicle().getSpeed();
+        timeLeft = this.travel.getCurrentCity().getDistance()/10 + travel.getVehicle().getSpeed();
         while (timeLeft != 0) {
             timeLeft--;
             try {
