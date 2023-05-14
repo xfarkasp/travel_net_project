@@ -73,7 +73,7 @@ public class Travel {
         return vehicle;
     }
 
-    public void setVehicle(){
-
+    public void setVehicle(Vehicle vehicle){
+        this.vehicle = vehicle;
     }
 }

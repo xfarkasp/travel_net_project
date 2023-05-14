@@ -2,6 +2,8 @@ package com.travelnet.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,8 @@ public class BratislavaController implements MapController {
     private Label zazitok1;
     @FXML
     private Label zazitok2;
+    @FXML
+    private ImageView map;
 
 
     private boolean zazitokFlag = false;
@@ -83,5 +87,10 @@ public class BratislavaController implements MapController {
             restauraciaFlag = false;
         }
 
+    }
+
+    @Override
+    public void setImg(String imgPath) {
+        this.map.setImage(new Image(imgPath));
     }
 }

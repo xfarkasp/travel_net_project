@@ -70,7 +70,7 @@ public class CityVisitor implements Visitor{
 
     @Override
     public Pane visit(City currentCity) {
-        System.out.println("neni su cecky");
+
         return null;
     }
 }

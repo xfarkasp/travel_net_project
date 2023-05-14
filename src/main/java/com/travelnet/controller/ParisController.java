@@ -2,6 +2,8 @@ package com.travelnet.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class ParisController implements MapController {
@@ -14,6 +16,9 @@ public class ParisController implements MapController {
 
     @FXML
     private Label hotel2;
+
+    @FXML
+    private ImageView map;
 
     @FXML
     private Label hotel21;
@@ -92,6 +97,12 @@ public class ParisController implements MapController {
             restauraciaFlag = false;
         }
 
+    }
+
+
+    @Override
+    public void setImg(String imgPath) {
+        this.map.setImage(new Image(imgPath));
     }
 
 }

@@ -8,22 +8,22 @@
 
 <Pane fx:id="mapPane" prefHeight="595.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.controller.ParisController">
    <children>
-      <ImageView fitHeight="447.0" fitWidth="616.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="map" fitHeight="447.0" fitWidth="616.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/maps/parisMap.png" />
          </image>
       </ImageView>
-      <Label fx:id="restauracia" layoutX="294.0" layoutY="227.0" prefHeight="13.0" prefWidth="73.0" text="The 3 musketeers" textFill="#26c947" visible="false">
+      <Label fx:id="restauracia" layoutX="294.0" layoutY="227.0" prefHeight="13.0" prefWidth="73.0" text="The 3 musketeers" textFill="#ff0900" visible="false">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="restauracia1" layoutX="287.0" layoutY="182.0" prefHeight="15.0" prefWidth="105.0" text="Casanova" textFill="#26c947" visible="false">
+      <Label fx:id="restauracia1" layoutX="287.0" layoutY="182.0" prefHeight="15.0" prefWidth="105.0" text="Casanova" textFill="#f80606" visible="false">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="restauracia2" layoutX="177.0" layoutY="219.0" prefHeight="13.0" prefWidth="73.0" text="Le P'tit Troquet" textFill="#26c947" visible="false">
+      <Label fx:id="restauracia2" layoutX="177.0" layoutY="219.0" prefHeight="13.0" prefWidth="73.0" text="Le P'tit Troquet" textFill="#c72626" visible="false">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
