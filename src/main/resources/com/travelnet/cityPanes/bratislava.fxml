@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="mapPane" prefHeight="595.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.controller.BratislavaController">
+   <children>
+      <ImageView fitHeight="545.0" fitWidth="616.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/maps/bratislavMap.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="restauracia" layoutX="361.0" layoutY="312.0" prefHeight="13.0" prefWidth="73.0" text="MC donalds" textFill="#26c947" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="restauracia1" layoutX="361.0" layoutY="280.0" prefHeight="15.0" prefWidth="105.0" text="U Zlateho bazanta" textFill="#26c947" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="restauracia2" layoutX="306.0" layoutY="364.0" prefHeight="13.0" prefWidth="73.0" text="Aupark" textFill="#26c947" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="restauracia3" layoutX="306.0" layoutY="312.0" prefHeight="13.0" prefWidth="73.0" text="Eurovea" textFill="#26c947" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="restauracia4" layoutX="325.0" layoutY="297.0" prefHeight="13.0" prefWidth="73.0" text="Nivy" textFill="#26c947" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="zazitok1" layoutX="265.0" layoutY="304.0" text="Hrad" visible="false" />
+      <Label fx:id="zazitok2" layoutX="265.0" layoutY="265.0" text="Slavin" visible="false" />
+      <Label fx:id="zazitok" layoutX="14.0" layoutY="207.0" text="Devin" visible="false" />
+      <Label fx:id="hotel" layoutX="348.0" layoutY="347.0" text="Hotel" visible="false" />
+      <Label fx:id="hotel1" layoutX="262.0" layoutY="364.0" text="Hotel" visible="false" />
+      <Label fx:id="hotel2" layoutX="199.0" layoutY="289.0" text="Hotel" visible="false" />
+      <Label fx:id="hotel21" layoutX="311.0" layoutY="235.0" text="Hotel" visible="false" />
+   </children>
+</Pane>

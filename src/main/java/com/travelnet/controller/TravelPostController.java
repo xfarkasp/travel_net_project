@@ -125,7 +125,6 @@ public class TravelPostController implements Initializable {
         captionText.setText(travel.getAbout());
         originCountry.setText("Nove Zamky");
         companionsText.setText("Empty");
-        countryList.setText("NOT IMPLEMENTED YET");
         postTravel = travel;
     }
     @FXML

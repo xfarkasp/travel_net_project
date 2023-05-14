@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="mapPane" prefHeight="595.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.travelnet.controller.ParisController">
+   <children>
+      <ImageView fitHeight="447.0" fitWidth="616.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/maps/parisMap.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="restauracia" layoutX="294.0" layoutY="227.0" prefHeight="13.0" prefWidth="73.0" text="The 3 musketeers" textFill="#26c947" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="restauracia1" layoutX="287.0" layoutY="182.0" prefHeight="15.0" prefWidth="105.0" text="Casanova" textFill="#26c947" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="restauracia2" layoutX="177.0" layoutY="219.0" prefHeight="13.0" prefWidth="73.0" text="Le P'tit Troquet" textFill="#26c947" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="zazitok2" layoutX="168.0" layoutY="199.0" text="Tour Eiffel" textFill="#030cff" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="hotel" layoutX="348.0" layoutY="347.0" text="Hotel" visible="false" />
+      <Label fx:id="hotel1" layoutX="262.0" layoutY="364.0" text="Hotel" visible="false" />
+      <Label fx:id="hotel2" layoutX="199.0" layoutY="289.0" text="Hotel" visible="false" />
+      <Label fx:id="hotel21" layoutX="311.0" layoutY="235.0" text="Hotel" visible="false" />
+      <Label fx:id="zazitok21" layoutX="142.0" layoutY="131.0" text="Arc de Triomphe" textFill="#030cff" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="zazitok211" layoutX="292.0" layoutY="182.0" text="Louvre" textFill="#030cff" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="zazitok2111" layoutX="304.0" layoutY="216.0" text="Notre-Dame" textFill="#030cff" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

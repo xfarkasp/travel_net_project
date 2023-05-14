@@ -1,11 +1,13 @@
 package com.travelnet.model.utillity;
 
-import com.travelnet.model.cities.Bratislava;
-import com.travelnet.model.cities.City;
-import com.travelnet.model.cities.Vienna;
+import com.travelnet.controller.CityWindowController;
+import com.travelnet.model.cities.*;
+import javafx.scene.layout.Pane;
 
 public interface Visitor {
-    public void visit(Bratislava ba);
-    public void visit(Vienna ve);
-    public void visit(City currentCity);
+    public Pane visit(Bratislava ba);
+    public Pane visit(Vienna ve);
+    public Pane visit(Paris pa);
+    public Pane visit(BudaPest bp);
+    public Pane visit(City currentCity);
 }

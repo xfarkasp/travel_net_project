@@ -1,6 +1,7 @@
 package com.travelnet.controller;
 
 import com.travelnet.model.cities.Bratislava;
+import com.travelnet.model.cities.Paris;
 import com.travelnet.model.cities.Vienna;
 import com.travelnet.model.users.User;
 import com.travelnet.model.users.UserHandler;
@@ -24,6 +25,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static com.sun.javafx.scene.control.skin.Utils.getResource;
@@ -33,14 +35,7 @@ public class CityWindowController implements Initializable {
     public VBox leftVbox;
     @FXML
     public VBox userContainer;
-    @FXML
-    private Label hotel;
-    @FXML
-    private Label hotel1;
-    @FXML
-    private Label hotel2;
-    @FXML
-    private Label hotel21;
+
     @FXML
     private ImageView leaveButton;
     @FXML
@@ -49,87 +44,52 @@ public class CityWindowController implements Initializable {
     private VBox usersBox;
     @FXML
     private ImageView nextTravelButton;
-    @FXML
-    private Label restauracia;
-    @FXML
-    private Label restauracia1;
-    @FXML
-    private Label restauracia2;
-    @FXML
-    private Label restauracia3;
-    @FXML
-    private Label restauracia4;
+
     @FXML
     private Button showHotels;
     @FXML
     private Button showInterests;
     @FXML
     private Button showRestaurants;
-    @FXML
-    private Label zazitok;
-    @FXML
-    private Label zazitok1;
-    @FXML
-    private Label zazitok2;
+
     @FXML
     private ImageView vehicleIMG;
     @FXML
     private Label condition;
+
+    @FXML
+    private Pane mapPane;
     @FXML
     private ChoiceBox<String> cityDropdown;
+
+    private MapController map;
     private boolean zazitokFlag = false;
     private boolean restauraciaFlag = false;
     private boolean hotelFlag = false;
     private Travel currentTravel;
 
+    private ArrayList<Label> restaurants;
+    private ArrayList<Label> hotels;
+    private ArrayList<Label> interests;
+
+    public void setMap(MapController map){
+        this.map = map;
+    }
+
     @FXML
     void showHotelsClicked(MouseEvent event) {
-        if(!hotelFlag){
-            this.hotel.setVisible(true);
-            this.hotel1.setVisible(true);
-            this.hotel21.setVisible(true);
-            hotelFlag = true;
-        }else{
-            this.hotel.setVisible(false);
-            this.hotel1.setVisible(false);
-            this.hotel21.setVisible(false);
-            hotelFlag = false;
-        }
+        map.showHotelsClicked();
 
     }
 
     @FXML
     void showInterestsClicked(MouseEvent event) {
-        if(!zazitokFlag){
-            this.zazitok.setVisible(true);
-            this.zazitok1.setVisible(true);
-            this.zazitok2.setVisible(true);
-            zazitokFlag = true;
-        }else{
-            this.zazitok.setVisible(false);
-            this.zazitok1.setVisible(false);
-            this.zazitok2.setVisible(false);
-            zazitokFlag = false;
-        }
+       map.showInterestsClicked();
     }
 
     @FXML
     void showRestaurantsClicked(MouseEvent event) {
-        if(!restauraciaFlag){
-            this.restauracia.setVisible(true);
-            this.restauracia1.setVisible(true);
-            this.restauracia2.setVisible(true);
-            this.restauracia3.setVisible(true);
-            this.restauracia4.setVisible(true);
-            restauraciaFlag = true;
-        }else{
-            this.restauracia.setVisible(false);
-            this.restauracia1.setVisible(false);
-            this.restauracia2.setVisible(false);
-            this.restauracia3.setVisible(false);
-            this.restauracia4.setVisible(false);
-            restauraciaFlag = false;
-        }
+       map.showRestaurantsClicked();
 
     }
 
@@ -151,12 +111,16 @@ public class CityWindowController implements Initializable {
         vehicleIMG.setImage(new Image(currentTravel.getVehicle().getIcon()));
 
 
-        CityVisitor visitor = new CityVisitor();
+        CityVisitor visitor = new CityVisitor(this);
         visitor.visit(currentTravel.getCurrentCity());
-        if(currentTravel.getCurrentCity() instanceof Bratislava)
-            visitor.visit((Bratislava) currentTravel.getCurrentCity());
+        if(currentTravel.getCurrentCity() instanceof Bratislava){
+            this.mapPane.getChildren().add(visitor.visit((Bratislava) currentTravel.getCurrentCity()));
+        }
         else if(currentTravel.getCurrentCity() instanceof Vienna)
             visitor.visit((Vienna) currentTravel.getCurrentCity());
+        else if(currentTravel.getCurrentCity() instanceof Paris)
+            this.mapPane.getChildren().add(visitor.visit((Paris) currentTravel.getCurrentCity()));
+
 
     }
 

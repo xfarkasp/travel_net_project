@@ -56,6 +56,7 @@ public class TravelCreatorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cityDropdown.getItems().add("Bratislava");
         cityDropdown.getItems().add("Vienna");
+        cityDropdown.getItems().add("Paris");
 
         vehicleDropdown.getItems().add("Car");
         vehicleDropdown.getItems().add("Plane");

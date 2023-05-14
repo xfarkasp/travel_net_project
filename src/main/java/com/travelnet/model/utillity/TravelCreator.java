@@ -2,6 +2,7 @@ package com.travelnet.model.utillity;
 
 import com.travelnet.model.cities.Bratislava;
 import com.travelnet.model.cities.City;
+import com.travelnet.model.cities.Paris;
 import com.travelnet.model.cities.Vienna;
 import com.travelnet.model.users.Adult;
 import com.travelnet.model.users.User;
@@ -31,6 +32,8 @@ public class TravelCreator {
             newCity = new Bratislava();
         else if(city == "Vienna")
             newCity = new Vienna();
+        else if(city == "Paris")
+            newCity = new Paris();
 
         if(vehicle == "Car")
             newVehcile = new Car();
