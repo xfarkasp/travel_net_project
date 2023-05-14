@@ -12,6 +12,10 @@ import com.travelnet.model.vechicles.Vehicle;
 
 import java.util.ArrayList;
 
+/**
+ * The type Travel creator.
+ * Singleton based database for travels
+ */
 public class TravelCreator {
 
     private static final TravelCreator instance = new TravelCreator();
@@ -22,9 +26,23 @@ public class TravelCreator {
         travelDataBase = new ArrayList<>();
     }
 
+    /**
+     * Get instance travel creator.
+     *
+     * @return the travel creator
+     */
     public static TravelCreator getInstance(){
         return instance;
     }
+
+    /**
+     * Create travel.
+     *
+     * @param city    the city
+     * @param vehicle the vehicle
+     * @param about   the about
+     * @param creator the creator
+     */
     public void createTravel(String city, String vehicle, String about, User creator){
         City newCity = null;
         Vehicle newVehcile = null;
@@ -45,10 +63,20 @@ public class TravelCreator {
         travelDataBase.add(newTravel);
     }
 
+    /**
+     * Travel list array list.
+     *
+     * @return the array list
+     */
     public ArrayList<Travel> travelList(){
         return travelDataBase;
     }
 
+    /**
+     * Test string.
+     *
+     * @return the string
+     */
     public String test(){
         return test;
     }

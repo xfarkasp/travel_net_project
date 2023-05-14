@@ -5,7 +5,16 @@ import com.travelnet.model.vechicles.Vehicle;
 
 import java.util.ArrayList;
 
+/**
+ * The type Adult.
+ */
 public class Adult extends DefaultUser{
+    /**
+     * Instantiates a new Adult.
+     *
+     * @param name     the name
+     * @param password the password
+     */
     public Adult(String name, String password) {
         super(name, password);
     }
@@ -16,7 +25,6 @@ public class Adult extends DefaultUser{
             this.stamina += 5;
             this.hunger +=5;
         }
-
 
         return false;
     }

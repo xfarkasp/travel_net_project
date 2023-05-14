@@ -87,6 +87,8 @@ public class CityWindowController implements Initializable {
     private ChoiceBox<String> cityDropdown;
     @FXML
     private ChoiceBox<String> vehicleDropDown;
+    @FXML
+    private Label notification;
 
     private MapController map;
     private boolean zazitokFlag = false;
@@ -165,22 +167,24 @@ public class CityWindowController implements Initializable {
         vehicleIMG.setImage(new Image(currentTravel.getVehicle().getIcon()));
         visit();
     }
-
+    /**
+     * Visit method uses visitor pattern to determine which city pane to load.
+     */
     private void visit(){
         CityVisitor visitor = new CityVisitor(this);
-        visitor.visit(currentTravel.getCurrentCity());
         if(currentTravel.getCurrentCity() instanceof Bratislava){
             this.mapPane.getChildren().add(visitor.visit((Bratislava) currentTravel.getCurrentCity()));
         }
         else if(currentTravel.getCurrentCity() instanceof Vienna)
-            visitor.visit((Vienna) currentTravel.getCurrentCity());
+            this.mapPane.getChildren().add(visitor.visit((Vienna) currentTravel.getCurrentCity()));
         else if(currentTravel.getCurrentCity() instanceof Paris)
             this.mapPane.getChildren().add(visitor.visit((Paris) currentTravel.getCurrentCity()));
     }
 
     /**
      * Set travel.
-     *
+     * Saves the vehicles from the travel to be tracked for the future
+     * calls setUp() to setup the window widgets
      * @param travel the travel
      */
     public void setTravel(Travel travel){
@@ -195,12 +199,13 @@ public class CityWindowController implements Initializable {
     /**
      * Handler for traveling to a new city.
      * Updates the city and vehicle objects in travel object
-     * from dropdown widgets, then calls the appropriat travel strategy
+     * from dropdown widgets, then calls the appropriate travel strategy based on instance of vehicle object
      * @param event the event
      */
     @FXML
     void nextTravelButton(MouseEvent event) {
         try{
+            //checking if necessary values has been selected
             if(cityDropdown.getValue() == null)
                 throw new EmptyInputException("City field is empty!", new RuntimeException());
             if(vehicleDropDown.getValue() == null)
@@ -217,15 +222,18 @@ public class CityWindowController implements Initializable {
                 currentTravel.setVehicle(this.car);
             else if(vehicleDropDown.getValue().equals("Plane"))
                 currentTravel.setVehicle(this.plane);
-
+            //check if companion list not empty
             if (currentTravel.getCompanions().size() > 0) {
+                //determine the strategy based on the instance of the vehicle
                 if (currentTravel.getVehicle() instanceof Plane)
                     travel(new TravelPlaneStrategy(currentTravel));
                 else if (currentTravel.getVehicle() instanceof Car) {
                     travel(new TravelCarStrategy(currentTravel));
                 }
             }
-        }catch(EmptyInputException e){
+        }
+        //handle empty input exceptions
+        catch(EmptyInputException e){
             System.out.println(e.getMessage());
             if(e.getMessage().equals("City field is empty!"))
                 cityDropdown.setValue("You must select a city!");
@@ -234,7 +242,11 @@ public class CityWindowController implements Initializable {
         }
     }
 
-
+    /**
+     * Leave button.
+     * On clicked closes the CityWindow
+     * @param event the event
+     */
     @FXML
     void leaveButton(MouseEvent event) {
         try {
@@ -249,16 +261,24 @@ public class CityWindowController implements Initializable {
     /**
      * Travel to a new city using a strategy
      * if the strategy returns true a delay service is started ona new thread
-     * of the sub-class which is of a task api
+     * of the subclass which is of a task api
      * @param travelMethod the travel method
      */
     public void travel(TravelStrategy travelMethod){
         if(travelMethod.travelTo()){
+            //hides notification
+            notification.setVisible(false);
+            //set up traveling gif
             this.map.setImg(travelMethod.getTravelAnimation());
+            //save strategy used to travel here
             this.actualStrategy = travelMethod;
-            //travelImage.setImage(new Image(travelMethod.getTravelAnimation()));
+            //sets arrival label to visible
             arivalText.setVisible(true);
+            //starts delay counter on new thread
             new delayService("pain").start();
+        }else{
+            notification.setVisible(true);
+            notification.setText("You can not travel now, check companion status and vehicle!");
         }
     }
 
@@ -280,7 +300,7 @@ public class CityWindowController implements Initializable {
         }
 
         /**
-         * Task to update time remaining of travel
+         * Task count time remaining and updates Gui from another thread
          * @return
          */
         @Override
@@ -290,14 +310,13 @@ public class CityWindowController implements Initializable {
                 protected String call() throws Exception {
                     int timeLeft =  actualStrategy.getTimeLeft();
                     do{
-
                         timeLeft =  actualStrategy.getTimeLeft();
-
+                        //lambda to update timer
                         Platform.runLater(() -> {
                             CityWindowController.this.timeLeft.setVisible(true);
                             CityWindowController.this.timeLeft.setText(String.valueOf(actualStrategy.getTimeLeft()));
                         });
-                        Thread.sleep(10);
+                        Thread.sleep(1000);
                     }while(timeLeft != 0);
 
                     return "ok";
@@ -311,7 +330,6 @@ public class CityWindowController implements Initializable {
         userContainer.getChildren();
         cityDropdown.getItems().add("Bratislava");
         cityDropdown.getItems().add("Vienna");
-        cityDropdown.getItems().add("BudaPest");
         cityDropdown.getItems().add("Paris");
         vehicleDropDown.getItems().add("Car");
         vehicleDropDown.getItems().add("Plane");

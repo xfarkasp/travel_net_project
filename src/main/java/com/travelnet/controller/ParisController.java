@@ -6,6 +6,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+/**
+ * The type Paris controller.
+ */
 public class ParisController implements MapController {
 
     @FXML

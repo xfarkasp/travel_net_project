@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The type Travel creator.
+ */
 public class TravelCreator extends Application {
     /**
      * @param stage

@@ -39,8 +39,10 @@ public class TravelPlaneStrategy implements TravelStrategy{
                     if (travel.getCompanions().get(i).skill(travel.getVehicle())) {
                         kmCounter += cityCurrent.getDistance();
                         for(User user : travel.getCompanions()){
+                            if(user.getHunger() > 10 && user.getStamina() > 10) {
                             user.setHunger(user.getHunger() - 5);
                             user.setStamina(user.getStamina() - 5);
+                            }else{return false;}
                         }
 
                         travel.getVehicle().setCondition(travel.getVehicle().getCondition() - travel.getVehicle().getFail());
@@ -54,17 +56,13 @@ public class TravelPlaneStrategy implements TravelStrategy{
         return false;
     }
 
-    /**
-     * @return
-     */
+
     @Override
     public int getTimeLeft() {
         return timeLeft;
     }
 
-    /**
-     * @return
-     */
+
     @Override
     public String getTravelAnimation() {
         return travelAnimation;
@@ -83,7 +81,11 @@ public class TravelPlaneStrategy implements TravelStrategy{
             }
         }
     }
-
+    /**
+     * The type Thread service.
+     * Creates a new thread for delay counter method.
+     *
+     */
     public class threadService extends Service<String> {
         private threadService(String timeLeft){
             setOnSucceeded(new EventHandler<WorkerStateEvent>() {
@@ -95,7 +97,9 @@ public class TravelPlaneStrategy implements TravelStrategy{
         }
 
         /**
-         * @return
+         * Starts the delay counter on another thread
+         *
+         * @return "ok"
          */
         @Override
         protected Task<String> createTask() {

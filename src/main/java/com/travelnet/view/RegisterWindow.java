@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The type Register window.
+ */
 public class RegisterWindow extends Application {
     @Override
     public void start(Stage stage)  {
@@ -22,6 +25,11 @@ public class RegisterWindow extends Application {
         stage.show();
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch();
     }

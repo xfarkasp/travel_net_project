@@ -10,6 +10,9 @@ import java.io.IOException;
 
 import static javafx.application.Application.launch;
 
+/**
+ * The type City window.
+ */
 public class CityWindow extends Application {
     private CityWindowController controllerInstance;
     @Override
@@ -28,10 +31,20 @@ public class CityWindow extends Application {
         stage.show();
     }
 
+    /**
+     * Get controller instance city window controller.
+     *
+     * @return the city window controller
+     */
     public CityWindowController getControllerInstance(){
         return controllerInstance;
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch();
     }

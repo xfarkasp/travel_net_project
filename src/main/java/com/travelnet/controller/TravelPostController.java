@@ -46,6 +46,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * The type Travel post controller.
+ * Controls the TravelPost
+ */
 public class TravelPostController implements Initializable {
     @FXML
     private Label captionText;
@@ -85,13 +89,24 @@ public class TravelPostController implements Initializable {
     @FXML
     private Label arivalText;
 
+    /**
+     * The Post travel.
+     */
     Travel postTravel;
 
+    /**
+     * The Mwc of the parent.
+     */
     MainWindowController mwc;
 
+    /**
+     * The Actual strategy.
+     */
     TravelStrategy actualStrategy;
 
     /**
+     * Initializes TravelPost
+     *
      * @param url
      * @param resourceBundle
      */
@@ -111,6 +126,13 @@ public class TravelPostController implements Initializable {
 
     }
 
+    /**
+     * Add new.
+     * This method sets the data of the TravelPost after it's creation
+     *
+     * @param travel     the travel
+     * @param mainWindow the main window
+     */
     public void addNew(Travel travel, MainWindowController mainWindow) {
         mwc = mainWindow;
         userName.setText(travel.getOwner().getName());
@@ -128,6 +150,12 @@ public class TravelPostController implements Initializable {
         companionsText.setText("Empty");
         postTravel = travel;
     }
+
+    /**
+     * On join button.
+     * Adds a User object to the travelCompanion list of the travel
+     * @param mouseEvent the mouse event
+     */
     @FXML
     public void onJoinButton(javafx.scene.input.MouseEvent mouseEvent) {
         postTravel.getCompanions().add(mwc.getLogedIn());
@@ -135,10 +163,14 @@ public class TravelPostController implements Initializable {
         for(User userToPost:postTravel.getCompanions()){
             companions += userToPost.getName() + " ";
         }
-        companionsText.setText(companions);
-        //PostObserver.getInstance().notifySubjects();
     }
 
+    /**
+     * On travel.
+     * If travel companion list is not empty then selects the travel strategy
+     * based on the instance of the selected Vehicle object
+     * @param mouseEvent the mouse event
+     */
     public void onTravel(javafx.scene.input.MouseEvent mouseEvent) {
 
         if(postTravel.getCompanions().size() > 0) {
@@ -150,6 +182,13 @@ public class TravelPostController implements Initializable {
         }
     }
 
+    /**
+     * Travel to a new city using a strategy
+     * if the strategy returns true a delay service is started ona new thread
+     * of the subclass which is of a task api
+     *
+     * @param travelMethod the travel method
+     */
     public void travel(TravelStrategy travelMethod){
         if(travelMethod.travelTo()){
             this.actualStrategy = travelMethod;
@@ -160,6 +199,12 @@ public class TravelPostController implements Initializable {
         }
     }
 
+    /**
+     * On remove.
+     * When remove button selected PostObserver notifys subs
+     * to remove post based on its index
+     * @param mouseEvent the mouse event
+     */
     public void onRemove(javafx.scene.input.MouseEvent mouseEvent) {
         //TravelCreator.getInstance().travelList().remove(TravelCreator.getInstance().travelList().indexOf(postTravel));
         int indexRemove = -1;
@@ -167,6 +212,7 @@ public class TravelPostController implements Initializable {
             if(travel.equals(postTravel)){
                 indexRemove = TravelCreator.getInstance().travelList().indexOf(travel);
                 TravelCreator.getInstance().travelList().remove(travel);
+                //index is from newest to oldest in the MainWindowController container
                 indexRemove =TravelCreator.getInstance().travelList().size() - indexRemove;
                 break;
             }
@@ -176,6 +222,9 @@ public class TravelPostController implements Initializable {
     }
 
 
+    /**
+     * Subclass of task api to create a new thread for traveling delay.
+     */
     public class delayService extends Service<String> {
         private delayService(String timeLeft){
             setOnSucceeded(new EventHandler<WorkerStateEvent>() {
@@ -185,13 +234,14 @@ public class TravelPostController implements Initializable {
                     Stage stage = new Stage();
                     cw.start(stage);
                     cw.getControllerInstance().setTravel(TravelPostController.this.postTravel);
-                    mwc.getTravelContainer().getChildren().remove( mwc.getTravelContainer().getChildren().indexOf(postVbox));
                 }
             });
         }
 
         /**
-         * @return
+         * Task count time remaining and updates Gui from another thread
+         *
+         * @return "ok"
          */
         @Override
         protected Task<String> createTask() {

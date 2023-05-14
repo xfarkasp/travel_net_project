@@ -78,10 +78,6 @@
                </padding>
             </HBox>
             <HBox prefHeight="21.0" prefWidth="540.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="83.0" text="Places to visit:" />
-                  <Label fx:id="countryList" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="439.0" text="ORIGINCOUNTRY" />
-               </children>
                <padding>
                   <Insets left="25.0" right="25.0" />
                </padding>

@@ -5,22 +5,44 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
+/**
+ * The type Post observer.
+ */
 public class PostObserver {
     private static final PostObserver instance = new PostObserver();
     private PostObserver(){tnInstances = new ArrayList<>();};
     private ArrayList<MainWindowController> tnInstances;
 
+    /**
+     * Get instance post observer.
+     *
+     * @return the post observer
+     */
     public static PostObserver getInstance(){
         return instance;
     }
 
+    /**
+     * Subscribe.
+     *
+     * @param controller the controller
+     */
     public void subscribe(MainWindowController controller){
         tnInstances.add(controller);
     }
+
+    /**
+     * Un subscribe.
+     *
+     * @param controller the controller
+     */
     public void unSubscribe(MainWindowController controller){
         tnInstances.remove(controller);
     }
 
+    /**
+     * Notify subjects.
+     */
     public void notifySubjects(){
         for(MainWindowController controller : tnInstances) {
             controller.update();
@@ -28,12 +50,15 @@ public class PostObserver {
         }
     }
 
+    /**
+     * Notify deleter.
+     *
+     * @param index the index
+     */
     public void notifyDeleter(int index){
         for(MainWindowController controller : tnInstances) {
             controller.delete(index);
             System.out.println("observer notified");
         }
     }
-
-
 }

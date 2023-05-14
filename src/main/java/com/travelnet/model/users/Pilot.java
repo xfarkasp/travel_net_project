@@ -4,21 +4,26 @@ import com.travelnet.model.vechicles.Vehicle;
 
 import java.util.ArrayList;
 
+/**
+ * The type Pilot.
+ */
 public class Pilot extends DefaultUser{
+    /**
+     * Instantiates a new Pilot.
+     *
+     * @param name     the name
+     * @param password the password
+     */
     public Pilot(String name, String password) {
         super(name, password);
         hunger = 50;
         stamina = 50;
     }
 
-    /**
-     * @param vehicle
-     * @return
-     */
     @Override
     public boolean skill(Vehicle vehicle) {
         if(vehicle.getCondition() > 0){
-            if(this.hunger > 0 && this.stamina > 0){
+            if(this.hunger >= 10 && this.stamina >= 10){
                 this.hunger -= 10;
                 this.stamina -= 10;
                 return true;
@@ -28,9 +33,6 @@ public class Pilot extends DefaultUser{
         return false;
     }
 
-    /**
-     * @param stamina
-     */
     @Override
     public void setStamina(int stamina) {
         this.stamina = stamina;

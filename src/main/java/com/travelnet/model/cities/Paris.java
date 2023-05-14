@@ -1,26 +1,21 @@
 package com.travelnet.model.cities;
 
+/**
+ * The type Paris.
+ */
 public class Paris extends CityTemplate implements City {
-
 
     private int distance = 70;
 
-
-
-    public int getDistance() {
-        return distance;
-    }
-
-
+    /**
+     * Instantiates a new Paris.
+     */
     public Paris(){
         this.name = "Paris";
         //img source: https://www.dreamstime.com/royalty-free-stock-photos-paris-france-image19597218
         this.imagePath = "src/main/resources/images/city_imgs/paris.jpg";
     }
 
-    /**
-     * @return
-     */
     @Override
     public String getImagePath() {
         return imagePath;
@@ -31,12 +26,10 @@ public class Paris extends CityTemplate implements City {
         return name;
     }
 
-
-
-    public int getDistance(String city) {
+    @Override
+    public int getDistance() {
         return distance;
     }
-
 
 }
 

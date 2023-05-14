@@ -12,12 +12,24 @@ import javafx.event.EventHandler;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * The type Plane.
+ */
 public class Plane implements Vehicle{
 
     private final int maxCondition = 30;
+    /**
+     * The Speed factor.
+     */
     protected int speedFactor = 5;
 
+    /**
+     * The Condition.
+     */
     protected int condition = 30;
+    /**
+     * The Fail factor.
+     */
     protected int failFactor = 10;
 
     private final String  icon = "images/icons/maverick.jpg";

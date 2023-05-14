@@ -6,24 +6,56 @@ import javafx.concurrent.Service;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * The interface Vehicle.
+ */
 public interface Vehicle {
-    default void defatult(){
-        return;
-    };
-
+    /**
+     * Gets speed.
+     *
+     * @return the speed
+     */
     int getSpeed();
 
+    /**
+     * Maintenance.
+     *
+     * @param user the user
+     */
     void maintenance(User user);
 
+    /**
+     * Gets condition.
+     *
+     * @return the condition
+     */
     int getCondition();
+
+    /**
+     * Sets condition.
+     *
+     * @param condition the condition
+     */
     void setCondition(int condition);
 
+    /**
+     * Gets icon.
+     *
+     * @return the icon
+     */
     String getIcon();
 
+    /**
+     * Gets fail.
+     *
+     * @return the fail
+     */
     int getFail();
 
+    /**
+     * Gets max condition.
+     *
+     * @return the max condition
+     */
     int getMaxCondition();
-
-
-
 }

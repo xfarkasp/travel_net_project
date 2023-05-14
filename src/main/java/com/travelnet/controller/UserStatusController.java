@@ -14,7 +14,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class UserStatusController implements Initializable {
+/**
+ * The type User status controller.
+ */
+public class UserStatusController{
 
     @FXML
     private Label hungerValue;
@@ -45,6 +48,12 @@ public class UserStatusController implements Initializable {
 
     private Label condition;
 
+    /**
+     * Use ability.
+     *Uses the skill method of the user
+     *
+     * @param event the event
+     */
     @FXML
     void useAbility(MouseEvent event) {
         if(userStatus.skill(vehicle)){
@@ -54,6 +63,13 @@ public class UserStatusController implements Initializable {
         }
     }
 
+    /**
+     * Set up.
+     *Sets up the UserStatus widget based on the inputs
+     * @param user      the user
+     * @param vehicle   the vehicle
+     * @param condition the condition
+     */
     public void setUp(User user, Vehicle vehicle, Label condition){
         this.condition = condition;
         this.vehicle = vehicle;
@@ -67,25 +83,27 @@ public class UserStatusController implements Initializable {
 
     }
 
+    /**
+     * Eat button.
+     * Increases user hunger attribute
+     *
+     * @param event the event
+     */
     @FXML
     void eatButton(MouseEvent event) {
         userStatus.setHunger(userStatus.getHunger() + 5);
         hungerValue.setText(String.valueOf(userStatus.getHunger()));
     }
 
+    /**
+     * Rest button.
+     * Increases user rest attribute
+     *
+     * @param event the event
+     */
     @FXML
     void restButton(MouseEvent event) {
         userStatus.setStamina(userStatus.getStamina() + 5);
         staminaValue.setText(String.valueOf(userStatus.getStamina()));
-    }
-
-
-    /**
-     * @param url
-     * @param resourceBundle
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

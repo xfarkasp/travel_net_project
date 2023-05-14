@@ -10,26 +10,45 @@ import javafx.event.EventHandler;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * The type Travel car strategy.
+ */
 public class TravelCarStrategy implements TravelStrategy{
+    /**
+     * Travel gif source.
+     */
     //gif source: https://gifs.alphacoders.com/gifs/view/6558
     private final String travelAnimation = "images/gif/dieselTime.gif";
+    /**
+     * Current travel.
+     */
     private Travel travel;
-
+    /**
+     * Time left to arrive to the selected city.
+     */
     private int timeLeft;
+    /**
+     * The Km counter.
+     */
     protected int kmCounter;
+
+    /**
+     * Instantiates a new Travel car strategy.
+     *
+     * @param travel the travel
+     */
     public TravelCarStrategy(Travel travel){
         this.travel = travel;
     }
-    /**
-     * @return
-     */
     @Override
     public boolean travelTo() {
         City cityCurrent = travel.getCurrentCity();
         if(travel.getVehicle().getCondition() > 0){
-            for(User user : travel.getCompanions()){
-                user.setHunger(user.getHunger() - 10);
-                user.setStamina(user.getStamina() - 10);
+                for(User user : travel.getCompanions()){
+                    if(user.getHunger() > 0 && user.getStamina() > 0) {
+                        user.setHunger(user.getHunger() - 10);
+                        user.setStamina(user.getStamina() - 10);
+                    }else{return false;}
             }
             kmCounter += cityCurrent.getDistance();
             travel.getVehicle().setCondition(travel.getVehicle().getCondition() - travel.getVehicle().getFail());
@@ -56,22 +75,19 @@ public class TravelCarStrategy implements TravelStrategy{
         }
     }
 
-    /**
-     * @return
-     */
     @Override
     public int getTimeLeft() {
         return timeLeft;
     }
 
-    /**
-     * @return
-     */
     @Override
     public String getTravelAnimation() {
         return travelAnimation;
     }
 
+    /**
+     * The type Thread service.
+     */
     public class threadService extends Service<String> {
         private threadService(String timeLeft){
             setOnSucceeded(new EventHandler<WorkerStateEvent>() {
@@ -82,9 +98,6 @@ public class TravelCarStrategy implements TravelStrategy{
             });
         }
 
-        /**
-         * @return
-         */
         @Override
         protected Task<String> createTask() {
             return new Task<String>() {

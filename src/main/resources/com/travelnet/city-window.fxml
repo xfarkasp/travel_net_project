@@ -85,6 +85,11 @@
                   <Font size="27.0" />
                </font>
             </Label>
+            <Label fx:id="notification" alignment="CENTER" layoutX="129.0" layoutY="-24.0" prefHeight="51.0" prefWidth="613.0" text="notification" textAlignment="CENTER" visible="false">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </bottom>

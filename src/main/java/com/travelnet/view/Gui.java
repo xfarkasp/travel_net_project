@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The type Gui.
+ */
 public class Gui extends Application {
     @Override
     public void start(Stage stage)  {
@@ -22,6 +25,11 @@ public class Gui extends Application {
         stage.show();
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch();
     }

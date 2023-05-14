@@ -26,6 +26,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * The type Travel creator controller.
+ * Controls the TravelCreator window
+ */
 public class TravelCreatorController implements Initializable {
 
     @FXML
@@ -49,6 +53,8 @@ public class TravelCreatorController implements Initializable {
 
 
     /**
+     * Initializes the window
+     *
      * @param url
      * @param resourceBundle
      */
@@ -64,10 +70,24 @@ public class TravelCreatorController implements Initializable {
 
     private Travel travel;
 
+    /**
+     * Set user data.
+     *
+     * @param user the user
+     */
     public void setUserData(User user){
         username.setText(user.getName());
     }
 
+    /**
+     * Onsubbmit button.
+     * Checks if every required field has been selected
+     * Sends the input values to the TravelCreator singleton calass
+     * and adds it to the travel database.
+     *
+     * @param event the event
+     * @throws EmptyInputException the empty input exception
+     */
     @FXML
     void onsubbmitButton(MouseEvent event) throws EmptyInputException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../travel-post.fxml"));
@@ -99,6 +119,12 @@ public class TravelCreatorController implements Initializable {
 
     }
 
+    /**
+     * Set parent main window.
+     * Sets the controller from the parent scene
+     *
+     * @param mainWindowController the main window controller
+     */
     void setParentMainWindow(MainWindowController mainWindowController){
         this.mainWindowController = mainWindowController;
     }

@@ -10,14 +10,29 @@ import javafx.event.EventHandler;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * The type Car.
+ */
 public class Car implements Vehicle {
 
     private final int maxCondition = 15;
+    /**
+     * The Speed factor.
+     */
     protected int speedFactor = 15;
 
+    /**
+     * The Condition.
+     */
     protected int condition = 15;
+    /**
+     * The Fail factor.
+     */
     protected int failFactor = 3;
 
+    /**
+     * The Km counter.
+     */
     protected int kmCounter;
 
     private int timeLeft;
@@ -94,6 +109,9 @@ public class Car implements Vehicle {
         }
     }
 
+    /**
+     * The type Thread service.
+     */
     public class threadService extends Service<String> {
         private threadService(String timeLeft){
             setOnSucceeded(new EventHandler<WorkerStateEvent>() {

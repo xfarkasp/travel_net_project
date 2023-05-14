@@ -1,9 +1,6 @@
 package com.travelnet.model.utillity;
 
-import com.travelnet.controller.BratislavaController;
-import com.travelnet.controller.CityWindowController;
-import com.travelnet.controller.ParisController;
-import com.travelnet.controller.UserStatusController;
+import com.travelnet.controller.*;
 import com.travelnet.model.cities.*;
 import com.travelnet.view.Gui;
 import javafx.fxml.FXMLLoader;
@@ -13,11 +10,28 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The type City visitor.
+ */
 public class CityVisitor implements Visitor{
     private CityWindowController cwc;
+
+    /**
+     * Instantiates a new City visitor.
+     *
+     * @param controller the controller
+     */
     public CityVisitor(CityWindowController controller){
         cwc = controller;
     }
+
+    /**
+     * When parameter is type of Bratislava
+     * set up gui for Bratislava map
+     *
+     * @param ba
+     * @return
+     */
     @Override
     public Pane visit(Bratislava ba) {
         System.out.println("Bratislava coe");
@@ -33,14 +47,33 @@ public class CityVisitor implements Visitor{
 
         return pane;
     }
-
+    /**
+     * When parameter is type of Vienna
+     * set up gui for Vienna map
+     *
+     * @param ve
+     * @return
+     */
     @Override
     public Pane visit(Vienna ve) {
-        System.out.println("Cecky");
-        return null;
+        System.out.println("Vieden coe");
+        FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../cityPanes/vienna.fxml"));
+        Pane pane = null;
+        try {
+            pane = fxmlLoader.load();
+            ViennaController city = fxmlLoader.getController();
+            cwc.setMap(city);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return pane;
     }
 
     /**
+     * When parameter is type of Paris
+     * set up gui for Paris map
+     *
      * @param pa
      * @return
      */
@@ -57,20 +90,5 @@ public class CityVisitor implements Visitor{
         }
 
         return pane;
-    }
-
-    /**
-     * @param bp
-     * @return
-     */
-    @Override
-    public Pane visit(BudaPest bp) {
-        return null;
-    }
-
-    @Override
-    public Pane visit(City currentCity) {
-
-        return null;
     }
 }

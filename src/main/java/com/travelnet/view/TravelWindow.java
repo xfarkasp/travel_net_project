@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The type Travel window.
+ */
 public class TravelWindow extends Application {
 
     /**

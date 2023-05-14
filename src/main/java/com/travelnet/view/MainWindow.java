@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The type Main window.
+ */
 public class MainWindow extends Application {
     /**
      * @param stage

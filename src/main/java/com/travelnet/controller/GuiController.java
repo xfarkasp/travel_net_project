@@ -22,6 +22,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * The type Gui controller.
+ * Controls the login window
+ */
 public class GuiController implements Initializable {
     private UserHandler userHandler = new UserHandler();
     @FXML
@@ -44,23 +48,11 @@ public class GuiController implements Initializable {
 
     private UserHandler uh;
 
-    @FXML
-    protected void onAdiosButtonClick() {
-        welcomeText.setText("Adios!");
-    }
-
-    @FXML
-    void onDemoButton(ActionEvent event) {
-        try {
-            //Stage stage = (Stage) register.getScene().getWindow();
-            Stage stage = new Stage();
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.start(stage);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    /**
+     * On register.
+     * Sets the scene to the register window
+     * @param actionEvent the action event
+     */
     @FXML
     public void onRegister(ActionEvent actionEvent) {
         try {
@@ -72,6 +64,13 @@ public class GuiController implements Initializable {
         }
     }
 
+    /**
+     * On login.
+     * Checks if input values
+     * After checks if user with inputted username and password does exist in the database
+     * If user was successfully loged-in a new instance of MainWindow is created
+     * @param actionEvent the action event
+     */
     @FXML
     public void onLogin(ActionEvent actionEvent) {
         try {
@@ -104,6 +103,9 @@ public class GuiController implements Initializable {
     }
 
     /**
+     * Deserilizes the user databased, if deserialization fails, creates new user database(Singleton)
+     * Initializes window
+     *
      * @param url
      * @param resourceBundle
      */
@@ -111,15 +113,15 @@ public class GuiController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.uh = UserHandler.getInstance();
         try {
+            //deserialize user database
             FileInputStream loadUDB =  new FileInputStream("src/main/resources/serialization/UserDB.ser");
             ObjectInputStream load = new ObjectInputStream(loadUDB);
-
             uh.setUserList((ArrayList<User>) load.readObject());
-
             load.close();
             loadUDB.close();
 
         } catch (Exception e) {
+            //if serialization fails singleton user database will have 0 users
             this.uh = UserHandler.getInstance();
         }
     }

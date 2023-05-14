@@ -2,9 +2,11 @@ package com.travelnet.model.cities;
 
 import com.travelnet.model.users.User;
 
+/**
+ * The type Vienna.
+ */
 public class Vienna extends CityTemplate implements City {
     private int distance = 60;
-
     public Vienna(){
         this.name = "Vienna";
         this.imagePath = "src/main/resources/images/city_imgs/hofburg-palace-on-st-michael-square-vienna-austria-shutterstock_1613510086.jpg_d10bbfcf6b.jpg";
@@ -13,15 +15,10 @@ public class Vienna extends CityTemplate implements City {
     public String getImagePath() {
         return this.imagePath;
     }
-
-
-
     @Override
     public String getName() {
         return null;
     }
-
-
     @Override
     public int getDistance() {
         return distance;
