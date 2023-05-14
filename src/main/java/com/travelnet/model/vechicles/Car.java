@@ -11,6 +11,8 @@ import javafx.event.EventHandler;
 import java.util.concurrent.TimeUnit;
 
 public class Car implements Vehicle {
+
+    private final int maxCondition = 15;
     protected int speedFactor = 15;
 
     protected int condition = 15;
@@ -20,21 +22,7 @@ public class Car implements Vehicle {
 
     private int timeLeft;
 
-   /* @Override
-    public boolean travelTo(Travel travel) {
-        City cityCurrent = travel.getCurrentCity();
-        if(condition > 0){
-            int distance = cityCurrent.getDistance();
-
-                kmCounter += cityCurrent.getDistance();
-                new Car.threadService("pain").start();
-                return true;
-
-
-        }
-        System.out.println("The car is in bad condition, call a mechanic");
-        return false;
-    }*/
+    private final String icon = "images/icons/skyline.png";
 
     /**
      * @return
@@ -54,16 +42,6 @@ public class Car implements Vehicle {
 
     }
 
-   /* @Override
-    public boolean payments(User user, int distance) {
-        if(user.getMoney() >= distance){
-
-            System.out.println("Payment was succesful");
-            return true;
-        }
-        System.out.println("You don't have enough money to travel");
-        return false;
-    }*/
 
 
     @Override
@@ -74,6 +52,31 @@ public class Car implements Vehicle {
     public void setCondition(int condition) {this.condition = condition;}
 
     /**
+     * @return
+     */
+    @Override
+    public String getIcon() {
+        return icon;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int getFail() {
+        return failFactor;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int getMaxCondition() {
+        return maxCondition;
+    }
+
+    /**
+     * Starts the delay counter to delay the time of arrival on another thread
      * @return
      */
 

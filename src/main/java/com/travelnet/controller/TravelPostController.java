@@ -197,7 +197,7 @@ public class TravelPostController implements Initializable {
                             TravelPostController.this.timeLeft.setVisible(true);
                             TravelPostController.this.timeLeft.setText(String.valueOf(actualStrategy.getTimeLeft()));
                         });
-                        Thread.sleep(1000);
+                        Thread.sleep(10);
                     }while(timeLeft != 0);
 
                     return "ok";

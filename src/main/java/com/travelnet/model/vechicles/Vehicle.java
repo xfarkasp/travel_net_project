@@ -18,6 +18,12 @@ public interface Vehicle {
     int getCondition();
     void setCondition(int condition);
 
+    String getIcon();
+
+    int getFail();
+
+    int getMaxCondition();
+
 
 
 }

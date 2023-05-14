@@ -120,7 +120,7 @@ public class GuiController implements Initializable {
             loadUDB.close();
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            this.uh = UserHandler.getInstance();
         }
     }
 

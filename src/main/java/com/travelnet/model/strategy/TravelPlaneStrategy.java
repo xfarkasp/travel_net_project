@@ -2,6 +2,7 @@ package com.travelnet.model.strategy;
 
 import com.travelnet.model.cities.City;
 import com.travelnet.model.users.Pilot;
+import com.travelnet.model.users.User;
 import com.travelnet.model.utillity.Travel;
 import com.travelnet.model.vechicles.Plane;
 import javafx.concurrent.Service;
@@ -37,6 +38,12 @@ public class TravelPlaneStrategy implements TravelStrategy{
 
                     if (travel.getCompanions().get(i).skill(travel.getVehicle())) {
                         kmCounter += cityCurrent.getDistance();
+                        for(User user : travel.getCompanions()){
+                            user.setHunger(user.getHunger() - 5);
+                            user.setStamina(user.getStamina() - 5);
+                        }
+
+                        travel.getVehicle().setCondition(travel.getVehicle().getCondition() - travel.getVehicle().getFail());
 
                         new threadService("pain").start();
                         return true;

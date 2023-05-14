@@ -12,22 +12,6 @@ public class Pilot extends DefaultUser{
     }
 
     /**
-     * @param user
-     */
-    @Override
-    public void staminaUsage(User user) {
-
-    }
-
-    /**
-     * @param user
-     */
-    @Override
-    public void hunger(User user) {
-
-    }
-
-    /**
      * @param vehicle
      * @return
      */
@@ -45,11 +29,12 @@ public class Pilot extends DefaultUser{
     }
 
     /**
-     * @param waitTime
+     * @param stamina
+     * @return
      */
     @Override
-    public void waitTime(int waitTime) {
-
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
     }
 
     /**
@@ -60,11 +45,4 @@ public class Pilot extends DefaultUser{
         return this.name;
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public String getUserType() {
-        return this.userType;
-    }
 }

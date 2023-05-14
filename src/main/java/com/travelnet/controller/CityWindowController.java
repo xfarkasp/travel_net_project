@@ -5,12 +5,15 @@ import com.travelnet.model.users.UserHandler;
 import com.travelnet.model.utillity.PostObserver;
 import com.travelnet.model.utillity.Travel;
 import com.travelnet.model.utillity.TravelCreator;
+import com.travelnet.model.vechicles.Plane;
 import com.travelnet.view.Gui;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -25,93 +28,56 @@ import static com.sun.javafx.scene.control.skin.Utils.getResource;
 public class CityWindowController implements Initializable {
 
     public VBox leftVbox;
-
     @FXML
     public VBox userContainer;
     @FXML
-    private ImageView chatButton;
-
-    @FXML
-    private Button eatButton;
-
-    @FXML
     private Label hotel;
-
     @FXML
     private Label hotel1;
-
     @FXML
     private Label hotel2;
-
     @FXML
     private Label hotel21;
-
     @FXML
     private ImageView leaveButton;
-
     @FXML
     private Pane leftPane;
-
     @FXML
     private VBox usersBox;
-
     @FXML
     private ImageView nextTravelButton;
-
-    @FXML
-    private Button restButton;
-
     @FXML
     private Label restauracia;
-
     @FXML
     private Label restauracia1;
-
     @FXML
     private Label restauracia2;
-
     @FXML
     private Label restauracia3;
-
     @FXML
     private Label restauracia4;
-
     @FXML
     private Button showHotels;
-
     @FXML
     private Button showInterests;
-
     @FXML
     private Button showRestaurants;
-
-    @FXML
-    private Button visitButton;
-
     @FXML
     private Label zazitok;
-
     @FXML
     private Label zazitok1;
-
     @FXML
     private Label zazitok2;
-
+    @FXML
+    private ImageView vehicleIMG;
+    @FXML
+    private Label condition;
+    @FXML
+    private ChoiceBox<String> cityDropdown;
     private boolean zazitokFlag = false;
     private boolean restauraciaFlag = false;
     private boolean hotelFlag = false;
-
     private Travel currentTravel;
-
-    @FXML
-    void eatClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void restClicked(MouseEvent event) {
-
-    }
 
     @FXML
     void showHotelsClicked(MouseEvent event) {
@@ -165,11 +131,6 @@ public class CityWindowController implements Initializable {
     }
 
     @FXML
-    void visitClicked(MouseEvent event) {
-
-    }
-
-    @FXML
     public void setUpUsers(Travel travel){
         for(User user: travel.getCompanions()){
             FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../user-status.fxml"));
@@ -177,15 +138,22 @@ public class CityWindowController implements Initializable {
             try {
                 vBox = fxmlLoader.load();
                 UserStatusController usc = fxmlLoader.getController();
-                usc.setUsers(user);
+                usc.setUp(user, travel.getVehicle(), condition);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             userContainer.getChildren().add(vBox);
         }
+        condition.setText(String.valueOf(travel.getVehicle().getCondition()));
+        vehicleIMG.setImage(new Image(travel.getVehicle().getIcon()));
+        cityDropdown.setValue("Bratislava");
+        cityDropdown.setValue("Vienna");
+        cityDropdown.setValue("BudaPest");
+        cityDropdown.setValue("Paris");
     }
 
     public void setTravel(Travel travel){
+
         this.currentTravel = travel;
     }
     @Override

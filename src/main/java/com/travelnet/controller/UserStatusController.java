@@ -1,8 +1,11 @@
 package com.travelnet.controller;
 
+import com.travelnet.model.users.Mechanix;
 import com.travelnet.model.users.User;
+import com.travelnet.model.vechicles.Vehicle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -28,19 +31,40 @@ public class UserStatusController implements Initializable {
     @FXML
     private Label username;
 
+    @FXML
+    private Button abilityButton;
+
+    @FXML
+    private Button eat;
+    @FXML
+    private Button rest;
+
     private User userStatus;
+
+    private Vehicle vehicle;
+
+    private Label condition;
 
     @FXML
     void useAbility(MouseEvent event) {
-
+        if(userStatus.skill(vehicle)){
+            condition.setText(String.valueOf(vehicle.getCondition()));
+            staminaValue.setText(String.valueOf(userStatus.getStamina()));
+            hungerValue.setText(String.valueOf(userStatus.getHunger()));
+        }
     }
 
-    public void setUsers(User user){
+    public void setUp(User user, Vehicle vehicle, Label condition){
+        this.condition = condition;
+        this.vehicle = vehicle;
         this.userStatus = user;
         username.setText(user.getName());
         typeValue.setText(user.getClass().getSimpleName().toString());
         hungerValue.setText(String.valueOf(user.getHunger()));
         staminaValue.setText(String.valueOf(user.getStamina()));
+        if(!(user instanceof Mechanix))
+            abilityButton.setVisible(false);
+
     }
 
 

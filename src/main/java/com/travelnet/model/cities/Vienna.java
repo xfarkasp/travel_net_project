@@ -16,25 +16,7 @@ public class Vienna extends CityTemplate implements City {
         return this.imagePath;
     }
 
-    @Override
-    public boolean fetchFood(User user, int choice) {
-        return false;
-    }
 
-    @Override
-    public boolean entertainment(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean sleep(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean shopping(User user) {
-        return false;
-    }
 
     @Override
     public String getName() {

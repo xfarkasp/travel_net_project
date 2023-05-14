@@ -13,10 +13,14 @@ import javafx.event.EventHandler;
 import java.util.concurrent.TimeUnit;
 
 public class Plane implements Vehicle{
+
+    private final int maxCondition = 30;
     protected int speedFactor = 5;
 
     protected int condition = 30;
     protected int failFactor = 10;
+
+    private final String  icon = "images/icons/maverick.jpg";
 
 
     /**
@@ -40,15 +44,10 @@ public class Plane implements Vehicle{
 
     }
 
-    /**
-     * @param user
-     * @param distance
-     * @return
-     */
-
 
     /**
-     * @return
+     * Returns the condition of the vehicle
+     * @return condition
      */
     @Override
     public int getCondition() {
@@ -56,16 +55,38 @@ public class Plane implements Vehicle{
     }
 
     /**
+     * Sets the condition of the vehicle object
      * @param condition
      */
     @Override
     public void setCondition(int condition) {
-
+        this.condition = condition;
     }
 
+    /**
+     * Returns the path to the icon img
+     * @return
+     */
+    @Override
+    public String getIcon() {
+        return icon;
+    }
 
+    /**
+     * @return
+     */
+    @Override
+    public int getFail() {
+        return failFactor;
+    }
 
-
+    /**
+     * @return
+     */
+    @Override
+    public int getMaxCondition() {
+        return maxCondition;
+    }
 
 
 }

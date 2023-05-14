@@ -11,7 +11,6 @@ abstract class DefaultUser implements User, Serializable {
     protected int stamina;
     protected int money;
     protected int hunger;
-    protected String userType;
     protected ArrayList<Travel>ownedTravels;
     public ArrayList<Travel> getOwnedTravels() {
         return ownedTravels;
@@ -34,18 +33,14 @@ abstract class DefaultUser implements User, Serializable {
     public void setStamina(int stamina) {
         this.stamina = stamina;
     }
-    public int getMoney() {
-        return money;
-    }
-    public void setMoney(int money) {
-        this.money = money;
-    }
     public int getHunger() {
         return hunger;
     }
     public void setHunger(int hunger) {
         this.hunger = hunger;
     }
+
+
 
     public DefaultUser(String name, String password) {
         this.name = name;
