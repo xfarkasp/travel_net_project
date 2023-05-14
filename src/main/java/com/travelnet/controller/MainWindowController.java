@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -72,6 +73,10 @@ public class MainWindowController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void delete(int index){
+        getTravelContainer().getChildren().remove(index);
     }
 
     public void onAddButtonPressed(javafx.scene.input.MouseEvent mouseEvent) {

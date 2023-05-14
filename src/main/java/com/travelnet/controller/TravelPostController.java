@@ -12,6 +12,7 @@ import com.travelnet.model.users.User;
 import com.travelnet.model.utillity.CityVisitor;
 import com.travelnet.model.utillity.PostObserver;
 import com.travelnet.model.utillity.Travel;
+import com.travelnet.model.utillity.TravelCreator;
 import com.travelnet.model.vechicles.Car;
 import com.travelnet.model.vechicles.Plane;
 import com.travelnet.view.CityWindow;
@@ -157,6 +158,21 @@ public class TravelPostController implements Initializable {
             new delayService("pain").start();
 
         }
+    }
+
+    public void onRemove(javafx.scene.input.MouseEvent mouseEvent) {
+        //TravelCreator.getInstance().travelList().remove(TravelCreator.getInstance().travelList().indexOf(postTravel));
+        int indexRemove = -1;
+        for(Travel travel: TravelCreator.getInstance().travelList()){
+            if(travel.equals(postTravel)){
+                indexRemove = TravelCreator.getInstance().travelList().indexOf(travel);
+                TravelCreator.getInstance().travelList().remove(travel);
+                indexRemove =TravelCreator.getInstance().travelList().size() - indexRemove;
+                break;
+            }
+        }
+        if(indexRemove > -1)
+            PostObserver.getInstance().notifyDeleter(indexRemove);
     }
 
 

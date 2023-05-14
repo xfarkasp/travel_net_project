@@ -39,9 +39,9 @@
                   </HBox>
                </children>
             </VBox>
-            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="remove" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#onRemove" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/icons/icons8-settings-48.png" />
+                  <Image url="@../../images/icons/remove.png" />
                </image>
             </ImageView>
          </children>

@@ -1,6 +1,7 @@
 package com.travelnet.model.utillity;
 
 import com.travelnet.controller.MainWindowController;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
@@ -26,4 +27,13 @@ public class PostObserver {
             System.out.println("observer notified");
         }
     }
+
+    public void notifyDeleter(int index){
+        for(MainWindowController controller : tnInstances) {
+            controller.delete(index);
+            System.out.println("observer notified");
+        }
+    }
+
+
 }
