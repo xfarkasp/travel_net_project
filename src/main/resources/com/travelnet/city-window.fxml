@@ -52,7 +52,7 @@
                   <Image url="@../../images/icons/icons8-airplane-take-off-96.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="leaveButton" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="leaveButton" fitHeight="64.0" fitWidth="64.0" onMouseClicked="#leaveButton" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/icons/icons8-exit-sign-64.png" />
                </image>

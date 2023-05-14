@@ -166,9 +166,10 @@ public class TravelPostController implements Initializable {
                 @Override
                 public void handle(WorkerStateEvent workerStateEvent) {
                     CityWindow cw = new CityWindow();
-                    Stage stage = (Stage) startTravel.getScene().getWindow();
+                    Stage stage = new Stage();
                     cw.start(stage);
                     cw.getControllerInstance().setTravel(TravelPostController.this.postTravel);
+                    mwc.getTravelContainer().getChildren().remove( mwc.getTravelContainer().getChildren().indexOf(postVbox));
                 }
             });
         }

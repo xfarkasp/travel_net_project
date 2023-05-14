@@ -16,8 +16,10 @@ import com.travelnet.model.utillity.Travel;
 import com.travelnet.model.utillity.TravelCreator;
 import com.travelnet.model.vechicles.Car;
 import com.travelnet.model.vechicles.Plane;
+import com.travelnet.model.vechicles.Vehicle;
 import com.travelnet.view.CityWindow;
 import com.travelnet.view.Gui;
+import com.travelnet.view.RegisterWindow;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -43,9 +45,13 @@ import java.util.ResourceBundle;
 
 import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
+/**
+ * City window controller for the CityWindow window of the gui.
+ */
 public class CityWindowController implements Initializable {
 
     public VBox leftVbox;
+
     @FXML
     public VBox userContainer;
 
@@ -88,31 +94,57 @@ public class CityWindowController implements Initializable {
     private boolean hotelFlag = false;
     private Travel currentTravel;
 
-    private ArrayList<Label> restaurants;
-    private ArrayList<Label> hotels;
-    private ArrayList<Label> interests;
+   private Vehicle car;
+   private Vehicle plane;
 
+
+    /**
+     * Sets up map pane controller.
+     *
+     * @param map the map
+     */
     public void setMap(MapController map){
         this.map = map;
     }
 
+    /**
+     * The Actual strategy.
+     */
     TravelStrategy actualStrategy;
 
+    /**
+     * Show hotels clicked.
+     *
+     * @param event the event
+     */
     @FXML
     void showHotelsClicked(MouseEvent event) {
         map.showHotelsClicked();
     }
 
+    /**
+     * Show interests clicked.
+     *
+     * @param event the event
+     */
     @FXML
     void showInterestsClicked(MouseEvent event) {
        map.showInterestsClicked();
     }
 
+    /**
+     * Show restaurants clicked.
+     *
+     * @param event the event
+     */
     @FXML
     void showRestaurantsClicked(MouseEvent event) {
        map.showRestaurantsClicked();
     }
 
+    /**
+     * Sets up the windows based on the travel object attribute of this object.
+     */
     @FXML
     public void setUp(){
         userContainer.getChildren().clear();
@@ -146,11 +178,26 @@ public class CityWindowController implements Initializable {
             this.mapPane.getChildren().add(visitor.visit((Paris) currentTravel.getCurrentCity()));
     }
 
+    /**
+     * Set travel.
+     *
+     * @param travel the travel
+     */
     public void setTravel(Travel travel){
         this.currentTravel = travel;
+        if(travel.getVehicle() instanceof Plane)
+            this.plane = travel.getVehicle();
+        if(travel.getVehicle() instanceof Car)
+            this.car = travel.getVehicle();
         setUp();
     }
 
+    /**
+     * Handler for traveling to a new city.
+     * Updates the city and vehicle objects in travel object
+     * from dropdown widgets, then calls the appropriat travel strategy
+     * @param event the event
+     */
     @FXML
     void nextTravelButton(MouseEvent event) {
         try{
@@ -167,9 +214,9 @@ public class CityWindowController implements Initializable {
 
             //new vehicle setup
             if(vehicleDropDown.getValue().equals("Car"))
-                currentTravel.setVehicle(new Car());
+                currentTravel.setVehicle(this.car);
             else if(vehicleDropDown.getValue().equals("Plane"))
-                currentTravel.setVehicle(new Plane());
+                currentTravel.setVehicle(this.plane);
 
             if (currentTravel.getCompanions().size() > 0) {
                 if (currentTravel.getVehicle() instanceof Plane)
@@ -187,6 +234,24 @@ public class CityWindowController implements Initializable {
         }
     }
 
+
+    @FXML
+    void leaveButton(MouseEvent event) {
+        try {
+            Stage stage = (Stage) leaveButton.getParent().getScene().getWindow();
+            stage.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Travel to a new city using a strategy
+     * if the strategy returns true a delay service is started ona new thread
+     * of the sub-class which is of a task api
+     * @param travelMethod the travel method
+     */
     public void travel(TravelStrategy travelMethod){
         if(travelMethod.travelTo()){
             this.map.setImg(travelMethod.getTravelAnimation());
@@ -198,6 +263,9 @@ public class CityWindowController implements Initializable {
     }
 
 
+    /**
+     * Subclass of task api to create a new thread for traveling delay.
+     */
     public class delayService extends Service<String> {
         private delayService(String timeLeft){
             setOnSucceeded(new EventHandler<WorkerStateEvent>() {
@@ -205,12 +273,14 @@ public class CityWindowController implements Initializable {
                 public void handle(WorkerStateEvent workerStateEvent) {
                     arivalText.setVisible(false);
                     CityWindowController.this.timeLeft.setVisible(false);
+                    mapPane.getChildren().clear();
                     setUp();
                 }
             });
         }
 
         /**
+         * Task to update time remaining of travel
          * @return
          */
         @Override
@@ -243,9 +313,9 @@ public class CityWindowController implements Initializable {
         cityDropdown.getItems().add("Vienna");
         cityDropdown.getItems().add("BudaPest");
         cityDropdown.getItems().add("Paris");
-
         vehicleDropDown.getItems().add("Car");
         vehicleDropDown.getItems().add("Plane");
-
+        this.car = new Car();
+        this.plane = new Plane();
     }
 }

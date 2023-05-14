@@ -77,7 +77,6 @@ public class Car implements Vehicle {
 
     /**
      * Starts the delay counter to delay the time of arrival on another thread
-     * @return
      */
 
 

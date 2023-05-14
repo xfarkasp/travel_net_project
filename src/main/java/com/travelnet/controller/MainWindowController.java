@@ -52,6 +52,11 @@ public class MainWindowController implements Initializable {
 
     private UserHandler uh;
 
+    public VBox getTravelContainer() {
+        return travelContainer;
+    }
+
+
     public void update(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../travel-post.fxml"));

@@ -30,16 +30,13 @@ public class Pilot extends DefaultUser{
 
     /**
      * @param stamina
-     * @return
      */
     @Override
     public void setStamina(int stamina) {
         this.stamina = stamina;
     }
 
-    /**
-     * @return
-     */
+
     @Override
     public String getName() {
         return this.name;
