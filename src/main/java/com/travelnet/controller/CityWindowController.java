@@ -1,7 +1,10 @@
 package com.travelnet.controller;
 
+import com.travelnet.model.cities.Bratislava;
+import com.travelnet.model.cities.Vienna;
 import com.travelnet.model.users.User;
 import com.travelnet.model.users.UserHandler;
+import com.travelnet.model.utillity.CityVisitor;
 import com.travelnet.model.utillity.PostObserver;
 import com.travelnet.model.utillity.Travel;
 import com.travelnet.model.utillity.TravelCreator;
@@ -131,33 +134,43 @@ public class CityWindowController implements Initializable {
     }
 
     @FXML
-    public void setUpUsers(Travel travel){
-        for(User user: travel.getCompanions()){
+    public void setUp(){
+        for(User user: currentTravel.getCompanions()){
             FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("../user-status.fxml"));
             VBox vBox = null;
             try {
                 vBox = fxmlLoader.load();
                 UserStatusController usc = fxmlLoader.getController();
-                usc.setUp(user, travel.getVehicle(), condition);
+                usc.setUp(user, currentTravel.getVehicle(), condition);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             userContainer.getChildren().add(vBox);
         }
-        condition.setText(String.valueOf(travel.getVehicle().getCondition()));
-        vehicleIMG.setImage(new Image(travel.getVehicle().getIcon()));
-        cityDropdown.setValue("Bratislava");
-        cityDropdown.setValue("Vienna");
-        cityDropdown.setValue("BudaPest");
-        cityDropdown.setValue("Paris");
+        condition.setText(String.valueOf(currentTravel.getVehicle().getCondition()));
+        vehicleIMG.setImage(new Image(currentTravel.getVehicle().getIcon()));
+
+
+        CityVisitor visitor = new CityVisitor();
+        visitor.visit(currentTravel.getCurrentCity());
+        if(currentTravel.getCurrentCity() instanceof Bratislava)
+            visitor.visit((Bratislava) currentTravel.getCurrentCity());
+        else if(currentTravel.getCurrentCity() instanceof Vienna)
+            visitor.visit((Vienna) currentTravel.getCurrentCity());
+
     }
 
     public void setTravel(Travel travel){
-
         this.currentTravel = travel;
+        setUp();
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userContainer.getChildren();
+        cityDropdown.getItems().add("Bratislava");
+        cityDropdown.getItems().add("Vienna");
+        cityDropdown.getItems().add("BudaPest");
+        cityDropdown.getItems().add("Paris");
+
     }
 }

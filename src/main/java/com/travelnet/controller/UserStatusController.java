@@ -67,6 +67,18 @@ public class UserStatusController implements Initializable {
 
     }
 
+    @FXML
+    void eatButton(MouseEvent event) {
+        userStatus.setHunger(userStatus.getHunger() + 5);
+        hungerValue.setText(String.valueOf(userStatus.getHunger()));
+    }
+
+    @FXML
+    void restButton(MouseEvent event) {
+        userStatus.setStamina(userStatus.getStamina() + 5);
+        staminaValue.setText(String.valueOf(userStatus.getStamina()));
+    }
+
 
     /**
      * @param url

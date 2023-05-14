@@ -140,7 +140,7 @@ public class TravelPostController implements Initializable {
     }
 
     public void onTravel(javafx.scene.input.MouseEvent mouseEvent) {
-        CityVisitor visitor = new CityVisitor();
+
         if(postTravel.getCompanions().size() > 0) {
             if (postTravel.getVehicle() instanceof Plane)
                 travel(new TravelPlaneStrategy(postTravel));
@@ -148,13 +148,6 @@ public class TravelPostController implements Initializable {
                 travel(new TravelCarStrategy(postTravel));
             }
         }
-
-
-        //visitor.visit(postTravel.getCurrentCity());
-//        if(postTravel.getCurrentCity() instanceof Bratislava)
-//            visitor.visit((Bratislava) postTravel.getCurrentCity());
-//        else if(postTravel.getCurrentCity() instanceof Vienna)
-//            visitor.visit((Vienna) postTravel.getCurrentCity());
     }
 
     public void travel(TravelStrategy travelMethod){
@@ -163,6 +156,7 @@ public class TravelPostController implements Initializable {
             travelImage.setImage(new Image(travelMethod.getTravelAnimation()));
             arivalText.setVisible(true);
             new delayService("pain").start();
+
         }
     }
 
@@ -175,7 +169,7 @@ public class TravelPostController implements Initializable {
                     CityWindow cw = new CityWindow();
                     Stage stage = (Stage) startTravel.getScene().getWindow();
                     cw.start(stage);
-                    cw.getControllerInstance().setUpUsers(TravelPostController.this.postTravel);
+                    cw.getControllerInstance().setTravel(TravelPostController.this.postTravel);
                 }
             });
         }
