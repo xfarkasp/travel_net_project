@@ -48,7 +48,6 @@ public interface User {
      * @return the name
      */
     String getName();
-
     /**
      * Gets password.
      *

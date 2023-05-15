@@ -44,20 +44,6 @@ public class Plane implements Vehicle{
     }
 
     /**
-     * @param user
-     */
-    @Override
-    public void maintenance(User user) {
-        if(user.skill(this)){
-            System.out.println("Plane repaired");
-            return;
-        }
-        System.out.println("this user can not repair a car");
-
-    }
-
-
-    /**
      * Returns the condition of the vehicle
      * @return condition
      */
@@ -99,6 +85,5 @@ public class Plane implements Vehicle{
     public int getMaxCondition() {
         return maxCondition;
     }
-
 
 }

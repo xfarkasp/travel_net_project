@@ -18,13 +18,6 @@ public interface Vehicle {
     int getSpeed();
 
     /**
-     * Maintenance.
-     *
-     * @param user the user
-     */
-    void maintenance(User user);
-
-    /**
      * Gets condition.
      *
      * @return the condition

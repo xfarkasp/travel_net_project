@@ -39,7 +39,7 @@ public class Car implements Vehicle {
     /**
      * returns icon path
      */
-    private final String icon = "images/icons/skyline.png";
+    private final String icon = "images/icons/icons8-car.gif";
 
     /**
      * @return
@@ -49,15 +49,6 @@ public class Car implements Vehicle {
         return speedFactor;
     }
 
-    @Override
-    public void maintenance(User user) {
-        if(user.skill(this)){
-            System.out.println("Car repaired");
-            return;
-        }
-        System.out.println("this user can not repair a car");
-
-    }
     /**
      * Gets car condition
      *

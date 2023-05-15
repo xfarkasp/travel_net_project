@@ -192,9 +192,7 @@ public class CityWindowController implements Initializable {
         CityVisitor visitor = new CityVisitor(this);
         if(currentTravel.getCurrentCity() instanceof Bratislava){
             this.mapPane.getChildren().add(visitor.visit((Bratislava) currentTravel.getCurrentCity()));
-        }
-        //rtti used to cast objects
-        else if(currentTravel.getCurrentCity() instanceof Vienna)
+        } else if(currentTravel.getCurrentCity() instanceof Vienna)
             this.mapPane.getChildren().add(visitor.visit((Vienna) currentTravel.getCurrentCity()));
         else if(currentTravel.getCurrentCity() instanceof Paris)
             this.mapPane.getChildren().add(visitor.visit((Paris) currentTravel.getCurrentCity()));
